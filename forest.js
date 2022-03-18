@@ -1,12 +1,14 @@
 const backgroundColour = '#1A202C'
 let rainbow
 let pooratNaLes
+let dragons
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
   soundFormats('mp3', 'ogg');
   rainbow = loadSound('assets/rainbow.mp3');
   pooratNaLes = loadSound('assets/poorat-na-les.mp3');
+  dragons = loadSound('assets/dragons.mp3');
   noStroke();
   textSize(15);
   background(backgroundColour);
@@ -63,6 +65,13 @@ function keyPressed() {
           pooratNaLes.stop();
         } else {
           pooratNaLes.play();
+        }
+        break;
+      case 51:
+        if (dragons.isPlaying()) {
+          dragons.stop();
+        } else {
+          dragons.play();
         }
         break;
       default: null
