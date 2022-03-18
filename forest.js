@@ -1,7 +1,10 @@
 const backgroundColour = '#1A202C'
+let song
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
+  soundFormats('mp3', 'ogg');
+  song = loadSound('rainbow.mp3');
   noStroke();
   background(backgroundColour);
   colorMode(HSB, 360, 100, 100, 100);
@@ -38,6 +41,7 @@ function drawTree(x, y){
 
 function keyPressed() {
   if (key.charCodeAt(0) === 66) {
+    song.play();
     background(backgroundColour);
   } else {
     fill(random(140, 170), 100, random(50, 80));
