@@ -6,11 +6,15 @@ function setup() {
   soundFormats('mp3', 'ogg');
   song = loadSound('rainbow.mp3');
   noStroke();
+  textSize(15);
   background(backgroundColour);
   colorMode(HSB, 360, 100, 100, 100);
 }
 
-function draw() {}
+function draw() {
+  fill('grey');
+  text('Press any key to add a tree. Press numbers so play music. Press backspace to delete all.', 30, 30);
+}
 
 function drawTree(x, y){
   push();
