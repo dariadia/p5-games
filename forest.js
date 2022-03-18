@@ -21,14 +21,6 @@ function preload() {
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  rainbow.loop();
-  pooratNaLes.loop();
-  dragons.loop();
-  crowander.loop();
-  monster.loop();
-  giant.loop();
-  male.loop();
-  donkey.loop();
   noStroke();
   textSize(15);
   background(backgroundColour);
