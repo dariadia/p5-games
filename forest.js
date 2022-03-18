@@ -50,11 +50,21 @@ function keyPressed() {
   if (pressed === 66) {
     background(backgroundColour);
   } else if ([49,50,51,52,53,54,55,56,57].includes(pressed)) {
-    switch(pressed) {
+    switch (pressed) {
       case 49:
-        rainbow.play();
+        if (rainbow.isPlaying()) {
+          rainbow.stop();
+        } else {
+          rainbow.play();
+        }
+        break;
       case 50:
-        pooratNaLes.play();
+        if (pooratNaLes.isPlaying()) {
+          pooratNaLes.stop();
+        } else {
+          pooratNaLes.play();
+        }
+        break;
       default: null
     }
   } else {
