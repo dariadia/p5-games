@@ -1,10 +1,12 @@
 const backgroundColour = '#1A202C'
-let song
+let rainbow
+let pooratNaLes
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
   soundFormats('mp3', 'ogg');
-  song = loadSound('rainbow.mp3');
+  rainbow = loadSound('assets/rainbow.mp3');
+  pooratNaLes = loadSound('assets/poorat-na-les.mp3');
   noStroke();
   textSize(15);
   background(backgroundColour);
@@ -44,12 +46,19 @@ function drawTree(x, y){
 }
 
 function keyPressed() {
-  if (key.charCodeAt(0) === 66) {
-    song.play();
+  const pressed = key.charCodeAt(0)
+  if (pressed === 66) {
     background(backgroundColour);
+  } else if ([49,50,51,52,53,54,55,56,57].includes(pressed)) {
+    switch(pressed) {
+      case 49:
+        rainbow.play();
+      case 50:
+        pooratNaLes.play();
+      default: null
+    }
   } else {
     fill(random(140, 170), 100, random(50, 80));
-  
-	drawTree(random(windowWidth), random(windowWidth));
+	  drawTree(random(windowWidth), random(windowWidth));
   }
 }
