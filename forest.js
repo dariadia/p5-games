@@ -8,9 +8,7 @@ let giant
 let male
 let donkey
 
-function setup() {
-  createCanvas(windowWidth, windowHeight);
-  soundFormats('mp3', 'ogg');
+function preload() {
   rainbow = loadSound('assets/rainbow.mp3');
   pooratNaLes = loadSound('assets/poorat-na-les.mp3');
   dragons = loadSound('assets/dragons.mp3');
@@ -19,6 +17,10 @@ function setup() {
   giant = loadSound('assets/giant.mp3');
   male = loadSound('assets/male.mp3');
   donkey = loadSound('assets/donkey.mp3');
+}
+
+function setup() {
+  createCanvas(windowWidth, windowHeight);
   noStroke();
   textSize(15);
   background(backgroundColour);
