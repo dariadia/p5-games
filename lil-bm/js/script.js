@@ -348,6 +348,236 @@ function draw() {
 
 }
 
+function displayScore(player1, player2) {
+  push();
+  textAlign(CENTER, CENTER);
+  fill(255);
+  textSize(64);
+  let prevScore = totalScore;
+  if (singlePlayer) {
+    totalScore = int(player1.score);
+    text(totalScore, width / 2, 50);
+  } else {
+    totalScore = int(player1.score + player2.score);
+    text(totalScore, width / 2, 50);
+  }
+
+  if (prevScore < totalScore) {
+    runOnce = true;
+  }
+
+  if (mushroom.inEffect) {
+    textSize(32);
+    fill(random(56, 255), random(56, 255), random(56, 255)); 
+    if (mushroom.effectId === 0) {
+      text("SUPER RUNNER", width / 2, 100); 
+    } else {
+      text("SUPER HUNTER", width / 2, 100); 
+    }
+  }
+  pop();
+}
+
+function checkScore() {
+  if (totalScore % 10 === 0 && totalScore >= 10 && runOnce) {
+    addadversary();
+    if (totalScore % 20 === 0 && totalScore >= 20) {
+      nextSeason();
+    }
+    runOnce = false;
+  }
+}
+
+function checkEatingMushroom(player) {
+  let d = dist(player.x, player.y, mushroom.x, mushroom.y); 
+  let playerId = 0;
+  let p = 0;
+  if (d < player.radius + 15) {
+    if (player.sprintKey === 70) {
+      playerId = 1;
+    } else {
+      playerId = 2;
+    }
+    if (!mushroom.inEffect) {
+      if (!eaten_sound.isPlaying()) {
+        eaten_sound.setVolume(0.35);
+        eaten_sound.play();
+      }
+      mushroom.reset();
+      p = random(0, 1);
+      if (p < 0.5) {
+        player.speed *= 2;
+        mushroom.effectId = 0;
+      } else {
+        player.healthGainPerEat *= 2;
+        mushroom.effectId = 1;
+      }
+      mushroom.inEffect = true;
+      mushroom.effectPlayerId = playerId;
+      mushroom.prevScore = totalScore; 
+    }
+  }
+}
+
+function removeMushroomEffect() {
+  if (mushroom.prevScore === totalScore - 5 && mushroom.inEffect) {
+    mushroom.inEffect = false;
+    if (mushroom.effectPlayerId === 1) {
+      player1.speed = player1.originalSpeed;
+      player1.healthGainPerEat = player1.originalHealthPerEat;
+    } else if (mushroom.effectPlayerId === 2) {
+      player2.speed = player2.originalSpeed;
+      player2.healthGainPerEat = player2.originalHealthPerEat;
+    }
+  }
+}
+
+function checkGameOver() {
+  if (singlePlayer) {
+    if (player1.dead) {
+      gameOver = true;
+      mushroom.inEffect = false; 
+    }
+  } else {
+    if (player1.dead && player2.dead) {
+      gameOver = true;
+      mushroom.inEffect = false;
+    }
+  }
+}
+
+function showMainMenu() {
+  push();
+  fill(0);
+  textAlign(CENTER, CENTER);
+  textSize(20);
+  fill(255);
+  text(RULES, width / 2, height / 2 - 150); // rules
+  textSize(128);
+  text("E A R T H", width / 2, height / 2); // title
+  textSize(32);
+
+  textAlign(RIGHT, CENTER);
+  text("play as one", width / 2 - 100, height / 2 + 120);
+  text("WASD KEYS\nF to sprint", width / 2 - 100, height / 2 + 190);
+
+  textAlign(LEFT, CENTER);
+  text("play as two", width / 2 + 100, height / 2 + 120);
+  text("ARROWKEYS\nL to sprint", width / 2 + 100, height / 2 + 190);
+
+  fill(255, 100);
+  ellipse(100, 100, 120);
+  textAlign(CENTER, CENTER);
+  textSize(16);
+  fill(255);
+  text("YOU ARE HERE", 100, 175);
+  image(player1_texture, 100, 100, player1.radius * 2, player1.radius * 2);
+  pop();
+
+  checkMainMenuButtons();
+}
+
+function checkMainMenuButtons() {
+  push();
+  noStroke();
+  textSize(32);
+
+  if (mouseX < width / 2) {
+    fill(SELECTED);
+    textAlign(RIGHT, CENTER);
+    text("play as one", width / 2 - 100, height / 2 + 120);
+    fill(255);
+    textAlign(LEFT, CENTER);
+    text("play as two", width / 2 + 100, height / 2 + 120);
+    if (mouseIsPressed) {
+      playing = true;
+      singlePlayer = true;
+    }
+  } else {
+    fill(255, 100);
+    ellipse(width - 100, 100, 120);
+    textAlign(CENTER, CENTER);
+    textSize(16);
+    fill(255);
+    text("YOU ARE HERE", width - 100, 175);
+    image(player2_texture, width - 100, 100, player1.radius * 2, player1.radius * 2);
+    fill(255);
+    textSize(32);
+    textAlign(RIGHT, CENTER);
+    text("play as one", width / 2 - 100, height / 2 + 120);
+    fill(SELECTED);
+    textAlign(LEFT, CENTER);
+    text("play as two", width / 2 + 100, height / 2 + 120);
+    if (mouseIsPressed) {
+      playing = true;
+      singlePlayer = false;
+      player2 = new Predator(width - 100, 100, 2, 30, player2_texture, player2_texture_flipped, UP_ARROW, DOWN_ARROW, LEFT_ARROW, RIGHT_ARROW, 76);
+      addadversary();
+    }
+  }
+  pop();
+}
+
+
+function displayGameOver() {
+  push();
+  fill(255);
+  textAlign(CENTER, CENTER);
+  textSize(64);
+
+  if (bestScore < totalScore) {
+    fill(SELECTED);
+    text("YOU GOT A NEW RECORD!", width / 2, height / 2 - 200);
+    textSize(64);
+    text(totalScore, width / 2, 50);
+    textSize(32);
+    fill(255);
+    text("YOUR PREV BEST SCORE: " + bestScore, width / 2, height / 2 - 150);
+
+    if (!newRecord_sound.isPlaying() && playOnce) {
+      newRecord_sound.setVolume(0.2);
+      newRecord_sound.play();
+      playOnce = false;
+    }
+
+  } else {
+    fill(SELECTED);
+    text("YOU CAN DO BETTER!", width / 2, height / 2 - 200);
+    textSize(64);
+    text(totalScore, width / 2, 50);
+    textSize(32);
+    fill(255);
+    text("YOUR BEST SCORE: " + bestScore, width / 2, height / 2 - 150);
+
+    if (!noNewRecord_sound.isPlaying() && playOnce) {
+      noNewRecord_sound.setVolume(0.2);
+      noNewRecord_sound.play();
+      playOnce = false;
+    }
+  }
+
+  fill(255, 100);
+  ellipse(100, 100, 120);
+  textAlign(CENTER, CENTER);
+  textSize(16);
+  fill(255);
+  text("YOU ARE HERE", 100, 175);
+  image(player1_texture, 100, 100, player1.radius * 2, player1.radius * 2);
+  fill(255);
+  textSize(32);
+  text(STARTOVER, width / 2, height / 2 - 25); // game over msg
+  textSize(32);
+  textAlign(RIGHT, CENTER);
+  text("play as one", width / 2 - 100, height / 2 + 100);
+  text("WASD KEYS\nF to sprint", width / 2 - 100, height / 2 + 190);
+  textAlign(LEFT, CENTER);
+  text("play as two", width / 2 + 100, height / 2 + 100);
+  text("ARROWKEYS\nL to sprint", width / 2 + 100, height / 2 + 190);
+  pop();
+
+  checkGameOverButtons();
+}
+
 function checkGameOverButtons() {
   push();
   textSize(32);
