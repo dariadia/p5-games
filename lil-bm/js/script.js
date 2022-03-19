@@ -38,14 +38,10 @@ let BooksPosY = [];
 let campfirePosX = 0;
 let campfirePosY = 0;
 
-const RULES = "You are the predator of the Earth." +
-  "\nYou are constantly hungry so you must feast." +
-  "\nEat as much prey as you can before adversarys hunt you down." +
-  "\n(eat the red mushroom to boost your chance of survival)";
+const RULES = `TODO, eat this, collect that`
 
-const STARTOVER = "This is not the end." +
-  "\nYou may be dead, but your race lives on." +
-  "\nYou can start over again.";
+const STARTOVER = `You may be dead, but your race lives on
+  You can start over again.`
 
 let rabbit_white;
 let rabbit_brown;
@@ -142,10 +138,9 @@ function setup() {
   rectMode(CENTER);
   noStroke();
 
-  mushroom = new Mushroom(random(0, width), random(0, height), 30, mushroomTexture);
   currentSeason = int(random(0, 3)); 
   randomizeTreesPos(); 
-  randomizePlantsPos(); 
+  randomizeBooksPos(); 
 
   setupBG();
 
@@ -193,7 +188,7 @@ function setUpHearts() {
         texture = boar;
         texture_flipped = boar_flipped;
       }
-      let heartObj = new Prey(heartX, heartY, heartSpeed, heartRadius, texture, texture_flipped);
+      let heartObj = new Heart(heartX, heartY, heartSpeed, heartRadius, texture, texture_flipped);
       hearts.push(heartObj);
     }
   }
@@ -316,25 +311,12 @@ function randomizePlantsPos() {
 function draw() {
   drawBG(); 
   if (!playing && !gameOver) {
-    for (let i = 0; i < prey.length; i++) {
-      prey[i].move();
-      prey[i].display(playing);
-      predatorPro[0].handleEating(prey[i]);
-
-      for (let j = 0; j < num_plant; j++) {
-        prey[i].handleEating(plants[j]);
-      }
+    for (let i = 0; i < hearts.length; i++) {
+      hearts[i].move();
+      hearts[i].display(playing);
 
       for (let j = 0; j < NUM_TREE; j++) {
-        prey[i].collide(trees[j]);
-      }
-    }
-
-    for (let j = 0; j < predatorPro.length; j++) {
-      predatorPro[j].move();
-      predatorPro[j].display(playing);
-      for (let k = 0; k < NUM_TREE; k++) {
-        predatorPro[j].collide(trees[k]);
+        hearts[i].collide(trees[j]);
       }
     }
 
@@ -355,45 +337,20 @@ function draw() {
     checkGameOver();
     checkScore();
 
-    for (let i = 0; i < prey.length; i++) {
-      prey[i].move();
-      prey[i].display(playing);
-      for (let j = 0; j < num_plant; j++) {
-        prey[i].handleEating(plants[j]);
-      }
+    for (let i = 0; i < hearts.length; i++) {
+      hearts[i].move();
+      hearts[i].display(playing);
 
       for (let j = 0; j < NUM_TREE; j++) {
-        prey[i].collide(trees[j]);
+        hearts[i].collide(trees[j]);
       }
 
       if (!player1.dead) {
-        player1.handleEating(prey[i]);
+        player1.handleEating(hearts[i]);
       }
       if (!singlePlayer) {
         if (!player2.dead) {
-          player2.handleEating(prey[i]);
-        }
-      }
-      for (let j = 0; j < num_adversary; j++) {
-        predatorPro[j].handleEating(prey[i]);
-      }
-    }
-
-    for (let j = 0; j < num_adversary; j++) {
-      predatorPro[j].move();
-      predatorPro[j].display(playing);
-
-      for (let k = 0; k < NUM_TREE; k++) {
-        predatorPro[j].collide(trees[k]);
-      }
-      if (!player1.dead) {
-        predatorPro[j].hunting(player1);
-        player1.attacking(predatorPro[j]);
-      }
-      if (!singlePlayer) {
-        if (!player2.dead) {
-          predatorPro[j].hunting(player2);
-          player2.attacking(predatorPro[j]);
+          player2.handleEating(hearts[i]);
         }
       }
     }
@@ -408,8 +365,6 @@ function draw() {
         }
       }
       player1.display();
-      checkEatingMushroom(player1); 
-      removeMushroomEffect(); 
     } else {
       displayScore(player1, player2);
       if (!player1.dead) {
@@ -429,9 +384,6 @@ function draw() {
 
       player1.display();
       player2.display();
-      checkEatingMushroom(player1);
-      checkEatingMushroom(player2);
-      removeMushroomEffect();
     }
 
     if (gameOver) {
@@ -693,8 +645,7 @@ function checkGameOverButtons() {
 
       player1 = new Predator(100, 100, 2, 30, player1_texture, player1_texture_flipped, 87, 83, 65, 68, 70);
       num_adversary = 1;
-      setUpPrey(); 
-      setupadversary();
+      setUpHearts(); 
       gameOver = false;
       singlePlayer = true;
 
@@ -721,8 +672,7 @@ function checkGameOverButtons() {
       player1 = new Character(100, 100, 2, 30, player1_texture, player1_texture_flipped, 87, 83, 65, 68, 70);
       player2 = new Character(width - 100, 100, 2, 30, player2_texture, player2_texture_flipped, UP_ARROW, DOWN_ARROW, LEFT_ARROW, RIGHT_ARROW, 76);
       num_adversary = 2;
-      setUpPrey();
-      setupadversary();
+      setUpHearts();
       gameOver = false;
       singlePlayer = false;
 
