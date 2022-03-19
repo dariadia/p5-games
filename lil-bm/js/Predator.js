@@ -80,7 +80,56 @@ class Predator {
     }
   }
 
+  handleEating(prey) {
+    let d = dist(this.x, this.y, prey.x, prey.y);
+    let dx = prey.x - this.x;
+    let dy = prey.y - this.y;
+    let angle = atan2(dy, dx);
+    if (d < 50) {
+      if (d <= 45) {
+        // move away from the adversary!
+        prey.x += prey.speed / 3.5 * Math.cos(angle);
+        prey.y += prey.speed / 3.5 * Math.sin(angle);
+      }
+      // approach the prey
+      this.x = lerp(this.x, prey.x, 0.025);
+      this.y = lerp(this.y, prey.y, 0.025);
 
+      if (d < this.radius + prey.radius) {
+        this.health += this.healthGainPerEat;
+        this.health = constrain(this.health, 0, this.maxHealth);
+        prey.health -= this.healthGainPerEat;
+        if (prey.health < prey.maxHealth / 2) {
+          if (prey.speed > prey.originalSpeed / 4) {
+            prey.speed = prey.speed / 2;
+          }
+        }
+
+        if (prey.health <= 0) {
+          prey.reset();
+        }
+      }
+    } else {
+      prey.speed = prey.originalSpeed;
+    }
+  }
+
+  hunting(character) {
+    let d = dist(this.x, this.y, character.x, character.y);
+    if (d < 150) {
+      if (this.health > this.maxHealth / 2) {
+        this.x = lerp(this.x, character.x, 0.025);
+        this.y = lerp(this.y, character.y, 0.025);
+      }
+
+      if (d < this.radius + character.radius) {
+        this.health += (this.healthGainPerEat);
+        this.health = constrain(this.health, 0, this.maxHealth);
+
+        character.health -= 0.75;
+      }
+    }
+  }
 
   display(inGame) {
     push();
