@@ -116,7 +116,55 @@ class Character {
     else if (this.y > height) this.y -= height;
   }
 
+  handleEating(prey) {
+    let d = dist(this.x, this.y, prey.x, prey.y);
+    let dx = prey.x - this.x;
+    let dy = prey.y - this.y;
+    let angle = atan2(dy, dx);
 
+    if (d <= 100 && !this.dead) {
+      prey.x += prey.speed / 3.5 * Math.cos(angle);
+      prey.y += prey.speed / 3.5 * Math.sin(angle);
+
+      if (d < this.radius + prey.radius) {
+        this.health += this.healthGainPerEat;
+        this.health = constrain(this.health, 0, this.maxHealth);
+        prey.health = 0
+
+        // scored_sound.setVolume(0.2);
+        // scored_sound.play();
+
+        prey.reset();
+        this.score += 0.5; 
+        if (this.score % 10 === 0 && this.score >= 10) {
+          this.healthLossPerMove -= 0.005;
+          this.healthLossPerMove = constrain(this.healthLossPerMove, 0.1, 0.15)
+        }
+      }
+    }
+  }
+
+  attacking(adversary) {
+    let d = dist(this.x, this.y, adversary.x, adversary.y);
+
+    if (d < this.radius + adversary.radius) {
+      this.health += this.healthGainPerEat;
+      this.health = constrain(this.health, 0, this.maxHealth);
+      adversary.health -= 0.75;
+      if (adversary.health <= 0) {
+
+        // scored_sound_1.setVolume(0.3);
+        // scored_sound_1.play();
+
+        adversary.reset();
+        this.score++;
+        if (this.score % 10 === 0 && this.score >= 10) {
+          this.healthLossPerMove -= 0.015;
+          this.healthLossPerMove = constrain(this.healthLossPerMove, 0.1, 0.15)
+        }
+      }
+    }
+  }
 
   display() {
     push();
