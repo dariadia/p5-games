@@ -12,8 +12,6 @@ const NUM_TYPE_ONE = 20;
 const NUM_TYPE_TWO = 10;
 const NUM_HEARTS = [NUM_TYPE_ONE, NUM_TYPE_TWO];
 
-let num_adversary = 1;
-
 let playing = false;
 let gameOver = false;
 
@@ -52,7 +50,6 @@ let bison;
 let lion;
 let wolf;
 let leopard;
-let adversary;
 let rabbit_white_flipped;
 let rabbit_brown_flipped;
 let boar_flipped;
@@ -62,7 +59,6 @@ let bison_flipped;
 let lion_flipped;
 let wolf_flipped;
 let leopard_flipped;
-let adversary_flipped;
 
 let sunflower;
 let tree;
@@ -154,7 +150,6 @@ function setup() {
   player1 = new Character(100, 100, 2, 30, player1_texture, player1_texture_flipped, 87, 83, 65, 68, 70);
 
   setUpHearts();
-  setupadversary();
 }
 
 function setUpHearts() {
@@ -191,33 +186,6 @@ function setUpHearts() {
       let heartObj = new Heart(heartX, heartY, heartSpeed, heartRadius, texture, texture_flipped);
       hearts.push(heartObj);
     }
-  }
-}
-
-function setupadversary() {
-  predatorPro = []; 
-  for (let i = 0; i < num_adversary; i++) {
-    let adversaryX = random(50, width - 50);
-    let adversaryY = random(50, height - 50);
-
-    campfirePosX = adversaryX;
-    campfirePosY = adversaryY;
-
-    let adversarySpeed = 3;
-    let adversaryRadius = random(25, 30);
-
-    let adversaryObj = new PredatorPro(adversaryX, adversaryY, adversarySpeed, adversaryRadius, adversary, adversary_flipped);
-    predatorPro.push(adversaryObj); 
-  }
-}
-
-function addadversary() {
-  if (num_adversary < 25) {
-    let adversarySpeed = 3;
-    let adversaryRadius = random(25, 30);
-    let adversaryObj = new PredatorPro(campfirePosX, campfirePosY, adversarySpeed, adversaryRadius, adversary, adversary_flipped);
-    num_adversary++;
-    predatorPro.push(adversaryObj);
   }
 }
 
@@ -427,7 +395,6 @@ function displayScore(player1, player2) {
 
 function checkScore() {
   if (totalScore % 10 === 0 && totalScore >= 10 && runOnce) {
-    addadversary();
     if (totalScore % 20 === 0 && totalScore >= 20) {
       nextSeason();
     }
@@ -559,7 +526,6 @@ function checkMainMenuButtons() {
       playing = true;
       singlePlayer = false;
       player2 = new Predator(width - 100, 100, 2, 30, player2_texture, player2_texture_flipped, UP_ARROW, DOWN_ARROW, LEFT_ARROW, RIGHT_ARROW, 76);
-      addadversary();
     }
   }
   pop();
@@ -644,7 +610,7 @@ function checkGameOverButtons() {
       }
 
       player1 = new Predator(100, 100, 2, 30, player1_texture, player1_texture_flipped, 87, 83, 65, 68, 70);
-      num_adversary = 1;
+
       setUpHearts(); 
       gameOver = false;
       singlePlayer = true;
@@ -671,7 +637,7 @@ function checkGameOverButtons() {
       }
       player1 = new Character(100, 100, 2, 30, player1_texture, player1_texture_flipped, 87, 83, 65, 68, 70);
       player2 = new Character(width - 100, 100, 2, 30, player2_texture, player2_texture_flipped, UP_ARROW, DOWN_ARROW, LEFT_ARROW, RIGHT_ARROW, 76);
-      num_adversary = 2;
+
       setUpHearts();
       gameOver = false;
       singlePlayer = false;

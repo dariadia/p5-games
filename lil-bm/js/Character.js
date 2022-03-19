@@ -144,28 +144,6 @@ class Character {
     }
   }
 
-  attacking(adversary) {
-    let d = dist(this.x, this.y, adversary.x, adversary.y);
-
-    if (d < this.radius + adversary.radius) {
-      this.health += this.healthGainPerEat;
-      this.health = constrain(this.health, 0, this.maxHealth);
-      adversary.health -= 0.75;
-      if (adversary.health <= 0) {
-
-        // scored_sound_1.setVolume(0.3);
-        // scored_sound_1.play();
-
-        adversary.reset();
-        this.score++;
-        if (this.score % 10 === 0 && this.score >= 10) {
-          this.healthLossPerMove -= 0.015;
-          this.healthLossPerMove = constrain(this.healthLossPerMove, 0.1, 0.15)
-        }
-      }
-    }
-  }
-
   display() {
     push();
     rectMode(CORNER);
