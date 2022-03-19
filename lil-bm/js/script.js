@@ -103,6 +103,8 @@ let noNewRecord_sound;
 
 let playOnce = true;
 
+
+
 function setup() {
   createCanvas(windowWidth, windowHeight);
   textAlign(CENTER, CENTER);
@@ -131,6 +133,91 @@ function setup() {
 
   setUpPrey();
   setupadversary();
+}
+
+function setUpPrey() {
+  prey = []; // empty the array
+  // first loop for animal types
+  for (let i = 0; i < 5; i++) {
+    let num_animal = NUM_ANIMALS[i]; // get number of certain type
+    let animal_id = i; // get id of certain type
+    // second loop for animal objects and attributes
+    for (let j = 0; j < num_animal; j++) {
+      // declare attributes
+      let preyX = random(0, width);
+      let preyY = random(0, height);
+      let preySpeed = 0;
+      let preyRadius = 0;
+      let texture;
+      let texture_flipped;
+      // white or brown rabbit
+      if (animal_id === 0) {
+        preySpeed = random(3, 4);
+        preyRadius = random(10, 15);
+        // if it's fall and winter, rabbits will be brown
+        if (currentSeason === 2 || currentSeason === 3) {
+          texture = rabbit_brown;
+          texture_flipped = rabbit_brown_flipped;
+        } else {
+          texture = rabbit_white;
+          texture_flipped = rabbit_white_flipped;
+        }
+        // boar
+      } else if (animal_id === 1) {
+        preySpeed = random(1, 2);
+        preyRadius = random(20, 25);
+        texture = boar;
+        texture_flipped = boar_flipped;
+        // zebra, antelope, and bison
+      } else if (animal_id >= 2) {
+        preySpeed = random(1, 3);
+        preyRadius = random(25, 30);
+        // zebra
+        if (animal_id === 2) {
+          texture = zebra;
+          texture_flipped = zebra_flipped;
+          // antelope
+        } else if (animal_id === 3) {
+          texture = antelope;
+          texture_flipped = antelope_flipped;
+          //bison
+        } else if (animal_id === 4) {
+          texture = bison;
+          texture_flipped = bison_flipped;
+        }
+      }
+      // create the animal object
+      let preyObj = new Prey(preyX, preyY, preySpeed, preyRadius, texture, texture_flipped);
+      prey.push(preyObj); // put the object in the prey array
+    }
+  }
+}
+
+function setupadversary() {
+  predatorPro = []; 
+  for (let i = 0; i < num_adversary; i++) {
+    let adversaryX = random(50, width - 50);
+    let adversaryY = random(50, height - 50);
+
+    campfirePosX = adversaryX;
+    campfirePosY = adversaryY;
+
+    let adversarySpeed = 3;
+    let adversaryRadius = random(25, 30);
+
+    let adversaryObj = new PredatorPro(adversaryX, adversaryY, adversarySpeed, adversaryRadius, adversary, adversary_flipped);
+    predatorPro.push(adversaryObj); 
+  }
+}
+
+function addadversary() {
+  if (num_adversary < 25) {
+    let adversarySpeed = 3;
+    let adversaryRadius = random(25, 30);
+    let adversaryObj = new PredatorPro(campfirePosX, campfirePosY, adversarySpeed, adversaryRadius, adversary, adversary_flipped);
+    num_adversary++;
+    predatorPro.push(adversaryObj);
+  }
 }
 
 function setupPlayer() {
@@ -217,6 +304,19 @@ function nextSeason() {
   setupBG(); 
 }
 
+function randomizeTreesPos() {
+  for (let i = 0; i < NUM_TREE; i++) {
+    TreesPosX[i] = random(0, width);
+    TreesPosY[i] = random(0, height);
+  }
+}
+
+function randomizePlantsPos() {
+  for (let i = 0; i < num_plant; i++) {
+    PlantsPosX[i] = random(0, width);
+    PlantsPosY[i] = random(0, height);
+  }
+}
 
 function draw() {
   drawBG(); 
