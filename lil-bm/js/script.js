@@ -8,12 +8,9 @@ let singlePlayer = true;
 const NUM_SUNFLOWER = 10;
 let NUM_BOOKS = 100;
 
-const NUM_RABBIT = 20;
-const NUM_BOAR = 10;
-const NUM_ZEBRA = 10;
-const NUM_ANTELOPE = 10;
-const NUM_BISON = 10;
-const NUM_ANIMALS = [NUM_RABBIT, NUM_BOAR, NUM_ZEBRA, NUM_ANTELOPE, NUM_BISON];
+const NUM_TYPE_ONE = 20;
+const NUM_TYPE_TWO = 10;
+const NUM_HEARTS = [NUM_TYPE_ONE, NUM_TYPE_TWO];
 
 let num_adversary = 1;
 
@@ -166,21 +163,21 @@ function setup() {
 }
 
 function setUpHearts() {
-  prey = []; 
+  hearts = []; 
   for (let i = 0; i < 5; i++) {
-    let num_animal = NUM_ANIMALS[i]; 
-    let animal_id = i;
-    for (let j = 0; j < num_animal; j++) {
-      let preyX = random(0, width);
-      let preyY = random(0, height);
-      let preySpeed = 0;
-      let preyRadius = 0;
+    let num_heart = NUM_HEARTS[i]; 
+    let heart_id = i;
+    for (let j = 0; j < num_heart; j++) {
+      let heartX = random(0, width);
+      let heartY = random(0, height);
+      let heartSpeed = 0;
+      let heartRadius = 0;
       let texture;
       let texture_flipped;
 
-      if (animal_id === 0) {
-        preySpeed = random(3, 4);
-        preyRadius = random(10, 15);
+      if (heart_id === 0) {
+        heartSpeed = random(3, 4);
+        heartRadius = random(10, 15);
 
         if (currentSeason === 1 || currentSeason === 2) {
           texture = rabbit_brown;
@@ -190,32 +187,14 @@ function setUpHearts() {
           texture_flipped = rabbit_white_flipped;
         }
 
-      } else if (animal_id === 1) {
-        preySpeed = random(1, 2);
-        preyRadius = random(20, 25);
+      } else if (heart_id === 1) {
+        heartSpeed = random(1, 2);
+        heartRadius = random(20, 25);
         texture = boar;
         texture_flipped = boar_flipped;
-        // zebra, antelope, and bison
-      } else if (animal_id >= 2) {
-        preySpeed = random(1, 3);
-        preyRadius = random(25, 30);
-        // zebra
-        if (animal_id === 2) {
-          texture = zebra;
-          texture_flipped = zebra_flipped;
-          // antelope
-        } else if (animal_id === 3) {
-          texture = antelope;
-          texture_flipped = antelope_flipped;
-          //bison
-        } else if (animal_id === 4) {
-          texture = bison;
-          texture_flipped = bison_flipped;
-        }
       }
-      // create the animal object
-      let preyObj = new Prey(preyX, preyY, preySpeed, preyRadius, texture, texture_flipped);
-      prey.push(preyObj); // put the object in the prey array
+      let heartObj = new Prey(heartX, heartY, heartSpeed, heartRadius, texture, texture_flipped);
+      hearts.push(heartObj);
     }
   }
 }
