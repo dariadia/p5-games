@@ -107,6 +107,17 @@ class Character {
   }
 
 
+  // Checks if gone off the canvas && wraps to the other side
+  handleWrapping() {
+    if (this.x < 0) this.x += width;
+    else if (this.x > width) this.x -= width;
+
+    if (this.y < 0) this.y += height;
+    else if (this.y > height) this.y -= height;
+  }
+
+
+
   display() {
     push();
     rectMode(CORNER);
