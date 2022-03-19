@@ -5,8 +5,8 @@ let player2_texture;
 
 let singlePlayer = true;
 
-const NUM_TREE = 10;
-let num_plant = 100;
+const NUM_SUNFLOWER = 10;
+let NUM_BOOKS = 100;
 
 const NUM_RABBIT = 20;
 const NUM_BOAR = 10;
@@ -32,11 +32,11 @@ const WINTER = "#a8bab4";
 const SEASONS = [SPRING, SUMMER, FALL, WINTER]; 
 let currentSeason;
 
-let TreesPosX = [];
-let TreesPosY = [];
+let SunflowerPosX = [];
+let SunflowerPosY = [];
 
-let PlantsPosX = [];
-let PlantsPosY = [];
+let BooksPosX = [];
+let BooksPosY = [];
 
 let campfirePosX = 0;
 let campfirePosY = 0;
@@ -71,24 +71,20 @@ let wolf_flipped;
 let leopard_flipped;
 let adversary_flipped;
 
-let tree_spring;
-let tree_summer;
-let tree_fall;
-let tree_winter;
+let sunflower;
+let tree;
 
-let plant_spring;
-let plant_summer;
-let plant_fall;
-let plant_winter;
+let book_morning;
+let book_day;
+let book_night;
 
 let mushroomTexture;
 let camp;
 
 let trees = [];
-let plants = [];
-let prey = [];
+let books = [];
+let hearts = [];
 let players = [];
-let predatorPro = [];
 
 let spring_bg;
 let summer_bg;
@@ -102,8 +98,43 @@ let newRecord_sound;
 let noNewRecord_sound;
 
 let playOnce = true;
+const IMAGE_PATH = "assets/sprites"
 
+function preload() {
+  bmRight = loadImage(`${IMAGE_PATH}/bm-right.png`);
+  bmLeft = loadImage(`${IMAGE_PATH}/bm-left.png`);
 
+  bookVersion1 = loadImage(`${IMAGE_PATH}/book-1.png`);
+  bookVersion2 = loadImage(`${IMAGE_PATH}/book-2.png`);
+  bookVersion3 = loadImage(`${IMAGE_PATH}/book-3.png`);
+  bookVersion4 = loadImage(`${IMAGE_PATH}/book-4.png`);
+  bookVersion5 = loadImage(`${IMAGE_PATH}/book-5.png`);
+  bookVersion6 = loadImage(`${IMAGE_PATH}/book-6.png`);
+  bookVersion7 = loadImage(`${IMAGE_PATH}/book-7.png`);
+  bookVersion8 = loadImage(`${IMAGE_PATH}/book-8.png`);
+
+  sunflower = loadImage(`${IMAGE_PATH}/sunflower.png`);
+  tree = loadImage(`${IMAGE_PATH}/tree.png`);
+
+  plant_spring = loadImage("assets/images/Plant_Spring.png");
+  plant_summer = loadImage("assets/images/Plant_Summer.png");
+  plant_fall = loadImage("assets/images/Plant_Fall.png");
+  plant_winter = loadImage("assets/images/Plant_Winter.png");
+
+  mushroomTexture = loadImage("assets/images/Mushroom.png");
+  camp = loadImage("assets/images/Camp.png");
+
+  spring_bg = loadSound("assets/sounds/Spring.mp3");
+  summer_bg = loadSound("assets/sounds/Summer.mp3");
+  fall_bg = loadSound("assets/sounds/Fall.mp3");
+  winter_bg = loadSound("assets/sounds/Winter.mp3");
+  bg_music = [spring_bg, summer_bg, fall_bg, winter_bg];
+  eaten_sound = loadSound("assets/sounds/Eaten.mp3");
+  scored_sound = loadSound("assets/sounds/Scored.mp3");
+  scored_sound_1 = loadSound("assets/sounds/Man_Killed.mp3");
+  newRecord_sound = loadSound("assets/sounds/Lion_Roar.mp3");
+  noNewRecord_sound = loadSound("assets/sounds/Wolf_Cry.mp3");
+}
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -115,7 +146,7 @@ function setup() {
   noStroke();
 
   mushroom = new Mushroom(random(0, width), random(0, height), 30, mushroomTexture);
-  currentSeason = int(random(0, 4)); 
+  currentSeason = int(random(0, 3)); 
   randomizeTreesPos(); 
   randomizePlantsPos(); 
 
@@ -127,42 +158,38 @@ function setup() {
   append(players, lion_flipped);
   append(players, wolf_flipped);
   append(players, leopard_flipped);
-  setupPlayer(); // randomly set textures for players
-  // create player1 object
+  setupPlayer();
   player1 = new Character(100, 100, 2, 30, player1_texture, player1_texture_flipped, 87, 83, 65, 68, 70);
 
-  setUpPrey();
+  setUpHearts();
   setupadversary();
 }
 
-function setUpPrey() {
-  prey = []; // empty the array
-  // first loop for animal types
+function setUpHearts() {
+  prey = []; 
   for (let i = 0; i < 5; i++) {
-    let num_animal = NUM_ANIMALS[i]; // get number of certain type
-    let animal_id = i; // get id of certain type
-    // second loop for animal objects and attributes
+    let num_animal = NUM_ANIMALS[i]; 
+    let animal_id = i;
     for (let j = 0; j < num_animal; j++) {
-      // declare attributes
       let preyX = random(0, width);
       let preyY = random(0, height);
       let preySpeed = 0;
       let preyRadius = 0;
       let texture;
       let texture_flipped;
-      // white or brown rabbit
+
       if (animal_id === 0) {
         preySpeed = random(3, 4);
         preyRadius = random(10, 15);
-        // if it's fall and winter, rabbits will be brown
-        if (currentSeason === 2 || currentSeason === 3) {
+
+        if (currentSeason === 1 || currentSeason === 2) {
           texture = rabbit_brown;
           texture_flipped = rabbit_brown_flipped;
         } else {
           texture = rabbit_white;
           texture_flipped = rabbit_white_flipped;
         }
-        // boar
+
       } else if (animal_id === 1) {
         preySpeed = random(1, 2);
         preyRadius = random(20, 25);
@@ -236,7 +263,6 @@ function setupBG() {
   num_plant = 100; 
 
   if (currentSeason === 0) {
-
     for (let i = 0; i < NUM_TREE; i++) {
       let treeObj = new Tree(TreesPosX[i], TreesPosY[i], 60, tree_spring);
       trees.push(treeObj);
@@ -267,16 +293,6 @@ function setupBG() {
       plants.push(plantObj);
     }
 
-  } else if (currentSeason === 3) {
-    num_plant = 50;
-    for (let i = 0; i < NUM_TREE; i++) {
-      let treeObj = new Tree(TreesPosX[i], TreesPosY[i], 60, tree_winter);
-      trees.push(treeObj);
-    }
-    for (let j = 0; j < num_plant; j++) {
-      let plantObj = new Plant(PlantsPosX[j], PlantsPosY[j], 30, plant_winter);
-      plants.push(plantObj);
-    }
   }
 }
 
@@ -298,7 +314,7 @@ function drawBG() {
 
 function nextSeason() {
   currentSeason += 1;
-  if (currentSeason > 3) {
+  if (currentSeason > 2) {
     currentSeason = 0;
   }
   setupBG(); 

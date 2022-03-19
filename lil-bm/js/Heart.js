@@ -1,8 +1,7 @@
-// Prey
-// moves around and can be consumed by Character (player) and Predator (adversary)
-// will consume Plant objects
+// Heart
+// moves around and can be consumed by Character (player)
 
-class Prey {
+class Heart {
   constructor(x, y, speed, radius, texture, texture_flipped) {
     this.x = x;
     this.y = y;
@@ -15,10 +14,7 @@ class Prey {
     this.tx = random(0, 1000); 
     this.ty = random(0, 1000);
 
-    this.maxHealth = radius;
-    this.health = this.maxHealth; 
-    this.healthLossPerMove = 0.01;
-    this.healthGainPerEat = 0.025;
+    this.health = radius; 
 
     this.texture = texture;
     this.texture_flipped = texture_flipped;
@@ -35,9 +31,6 @@ class Prey {
     if (this.vx > 0) {
       this.faceLeft = false;
     }
-
-    this.health -= this.healthLossPerMove;
-    this.health = constrain(this.health, 0, this.maxHealth);
 
     this.x += this.vx;
     this.y += this.vy;
@@ -77,27 +70,6 @@ class Prey {
     }
   }
 
-  handleEating(plant) {
-    let d = dist(this.x, this.y, plant.x, plant.y);
-
-    if (d < 100 && this.health <= this.maxHealth / 2) {
-      this.x = lerp(this.x, plant.x, 0.01);
-      this.y = lerp(this.y, plant.y, 0.01);
-    }
-
-    if (d < this.radius + plant.radius) {
-      this.health += this.healthGainPerEat;
-      this.health = constrain(this.health, 0, this.maxHealth);
-
-      plant.health -= this.healthGainPerEat;
-
-      if (plant.health <= 0) {
-        plant.reset();
-      }
-    }
-
-  }
-
   display(inGame) {
     push();
     rectMode(CORNER);
@@ -113,7 +85,7 @@ class Prey {
     if (inGame) {
       fill(100);
       rect(this.x - this.radius, this.y - 40, this.radius * 2, 5);
-      fill(0, 255, 0); // green
+      fill(0, 255, 0);
       rect(this.x - this.radius, this.y - 40, this.health * 2, 5);
     }
     pop();
@@ -124,6 +96,6 @@ class Prey {
     this.y = random(0, height);
 
     this.speed = this.originalSpeed;
-    this.health = this.maxHealth;
+    this.health = this.radius;
   }
 }

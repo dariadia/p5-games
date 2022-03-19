@@ -1,12 +1,12 @@
 // Character
 // is controlled by the player
-// can eat prey and attack adversary and will get stronger over time
+// collects hearts and books
 
 class Character {
   constructor(x, y, speed, radius, texture, texture_flipped, upKey, downKey, leftKey, rightKey, sprintKey) {
     this.x = x;
     this.y = y;
-    // Velocity and speed
+
     this.vx = 0;
     this.vy = 0;
     this.originalSpeed = speed;
@@ -116,25 +116,25 @@ class Character {
     else if (this.y > height) this.y -= height;
   }
 
-  handleEating(prey) {
-    let d = dist(this.x, this.y, prey.x, prey.y);
-    let dx = prey.x - this.x;
-    let dy = prey.y - this.y;
+  handleEating(heart) {
+    let d = dist(this.x, this.y, heart.x, heart.y);
+    let dx = heart.x - this.x;
+    let dy = heart.y - this.y;
     let angle = atan2(dy, dx);
 
     if (d <= 100 && !this.dead) {
-      prey.x += prey.speed / 3.5 * Math.cos(angle);
-      prey.y += prey.speed / 3.5 * Math.sin(angle);
+      heart.x += heart.speed / 3.5 * Math.cos(angle);
+      heart.y += heart.speed / 3.5 * Math.sin(angle);
 
-      if (d < this.radius + prey.radius) {
+      if (d < this.radius + heart.radius) {
         this.health += this.healthGainPerEat;
         this.health = constrain(this.health, 0, this.maxHealth);
-        prey.health = 0
+        heart.health = 0
 
         // scored_sound.setVolume(0.2);
         // scored_sound.play();
 
-        prey.reset();
+        heart.reset();
         this.score += 0.5; 
         if (this.score % 10 === 0 && this.score >= 10) {
           this.healthLossPerMove -= 0.005;
