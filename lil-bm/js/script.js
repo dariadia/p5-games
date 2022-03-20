@@ -91,7 +91,7 @@ function preload() {
   tree = loadImage(`${IMAGE_PATH}/tree.png`);
 
   heartType1 = loadImage(`${IMAGE_PATH}/heart-1.png`);
-  heartType2 = loadImage(`${IMAGE_PATH}/heart-2.png`);
+  heartType2 = loadImage(`${IMAGE_PATH}/heart-5.png`);
   heartType3 = loadImage(`${IMAGE_PATH}/heart-3.png`);
   heartType4 = loadImage(`${IMAGE_PATH}/heart-4.png`);
 
@@ -151,19 +151,22 @@ function setUpHearts() {
         heartSpeed = random(3, 4);
         heartRadius = random(10, 15);
 
-        if (currentSeason === 1 || currentSeason === 2) {
-          texture = rabbit_brown;
-          texture_flipped = rabbit_brown_flipped;
+        if (currentSeason === 0) {
+          texture = heartType4;
+          texture_flipped = heartType4;
+        } else if (currentSeason === 1) {
+          texture = heartType3;
+          texture_flipped = heartType3;
         } else {
-          texture = rabbit_white;
-          texture_flipped = rabbit_white_flipped;
+          texture = heartType2;
+          texture_flipped = heartType2;
         }
 
       } else if (heart_id === 1) {
         heartSpeed = random(1, 2);
         heartRadius = random(20, 25);
-        texture = boar;
-        texture_flipped = boar_flipped;
+        texture = heartType1;
+        texture_flipped = heartType1;
       }
       let heartObj = new Heart(heartX, heartY, heartSpeed, heartRadius, texture, texture_flipped);
       hearts.push(heartObj);
