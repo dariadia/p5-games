@@ -1,3 +1,6 @@
+const HEART = 'heart'
+const BOOK = 'book'
+
 let player1;
 let player2;
 let player1_texture;
@@ -41,34 +44,17 @@ const RULES = `TODO, eat this, collect that`
 const STARTOVER = `You may be dead, but your race lives on
   You can start over again.`
 
-let rabbit_white;
-let rabbit_brown;
-let boar;
-let zebra;
-let antelope;
-let bison;
-let lion;
-let wolf;
-let leopard;
-let rabbit_white_flipped;
-let rabbit_brown_flipped;
-let boar_flipped;
-let zebra_flipped;
-let antelope_flipped;
-let bison_flipped;
-let lion_flipped;
-let wolf_flipped;
-let leopard_flipped;
-
 let sunflower;
 let tree;
 
-let book_morning;
-let book_day;
-let book_night;
-
-let mushroomTexture;
-let camp;
+let bookType1;
+let bookType2;
+let bookType3;
+let bookType4;
+let bookType5;
+let bookType6;
+let bookType7;
+let bookType8;
 
 let trees = [];
 let books = [];
@@ -246,8 +232,6 @@ function drawBG() {
   for (let i = 0; i < trees.length; i++) {
     trees[i].display();
   }
-  mushroom.display();
-
 }
 
 
@@ -311,11 +295,11 @@ function draw() {
       }
 
       if (!player1.dead) {
-        player1.handleEating(hearts[i]);
+        player1.handleEating(hearts[i], HEART);
       }
       if (!singlePlayer) {
         if (!player2.dead) {
-          player2.handleEating(hearts[i]);
+          player2.handleEating(hearts[i], HEART);
         }
       }
     }
@@ -329,11 +313,11 @@ function draw() {
       }
 
       if (!player1.dead) {
-        player1.handleEating(books[i]);
+        player1.handleEating(books[i], BOOK);
       }
       if (!singlePlayer) {
         if (!player2.dead) {
-          player2.handleEating(books[i]);
+          player2.handleEating(books[i], BOOK);
         }
       }
     }
@@ -396,15 +380,6 @@ function displayScore(player1, player2) {
     runOnce = true;
   }
 
-  if (mushroom.inEffect) {
-    textSize(32);
-    fill(random(56, 255), random(56, 255), random(56, 255)); 
-    if (mushroom.effectId === 0) {
-      text("SUPER RUNNER", width / 2, 100); 
-    } else {
-      text("SUPER HUNTER", width / 2, 100); 
-    }
-  }
   pop();
 }
 
@@ -417,61 +392,11 @@ function checkScore() {
   }
 }
 
-function checkEatingMushroom(player) {
-  let d = dist(player.x, player.y, mushroom.x, mushroom.y); 
-  let playerId = 0;
-  let p = 0;
-  if (d < player.radius + 15) {
-    if (player.sprintKey === 70) {
-      playerId = 1;
-    } else {
-      playerId = 2;
-    }
-    if (!mushroom.inEffect) {
-      if (!eaten_sound.isPlaying()) {
-        eaten_sound.setVolume(0.35);
-        eaten_sound.play();
-      }
-      mushroom.reset();
-      p = random(0, 1);
-      if (p < 0.5) {
-        player.speed *= 2;
-        mushroom.effectId = 0;
-      } else {
-        player.healthGainPerEat *= 2;
-        mushroom.effectId = 1;
-      }
-      mushroom.inEffect = true;
-      mushroom.effectPlayerId = playerId;
-      mushroom.prevScore = totalScore; 
-    }
-  }
-}
-
-function removeMushroomEffect() {
-  if (mushroom.prevScore === totalScore - 5 && mushroom.inEffect) {
-    mushroom.inEffect = false;
-    if (mushroom.effectPlayerId === 1) {
-      player1.speed = player1.originalSpeed;
-      player1.healthGainPerEat = player1.originalHealthPerEat;
-    } else if (mushroom.effectPlayerId === 2) {
-      player2.speed = player2.originalSpeed;
-      player2.healthGainPerEat = player2.originalHealthPerEat;
-    }
-  }
-}
-
 function checkGameOver() {
   if (singlePlayer) {
-    if (player1.dead) {
-      gameOver = true;
-      mushroom.inEffect = false; 
-    }
+    if (player1.dead) gameOver = true;
   } else {
-    if (player1.dead && player2.dead) {
-      gameOver = true;
-      mushroom.inEffect = false;
-    }
+    if (player1.dead && player2.dead) gameOver = true;
   }
 }
 
