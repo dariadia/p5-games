@@ -320,6 +320,24 @@ function draw() {
       }
     }
 
+    for (let i = 0; i < books.length; i++) {
+      books[i].move();
+      books[i].display(playing);
+
+      for (let j = 0; j < NUM_TREE; j++) {
+        books[i].collide(trees[j]);
+      }
+
+      if (!player1.dead) {
+        player1.handleEating(books[i]);
+      }
+      if (!singlePlayer) {
+        if (!player2.dead) {
+          player2.handleEating(books[i]);
+        }
+      }
+    }
+
     if (singlePlayer) {
       displayScore(player1, null); 
       if (!player1.dead) {
