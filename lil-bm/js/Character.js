@@ -2,6 +2,9 @@
 // is controlled by the player
 // collects hearts and books
 
+const HEART = 'heart'
+const BOOK = 'book'
+
 class Character {
   constructor(x, y, speed, radius, texture, texture_flipped, upKey, downKey, leftKey, rightKey, sprintKey) {
     this.x = x;
@@ -112,7 +115,7 @@ class Character {
     else if (this.y > height) this.y -= height;
   }
 
-  handleEating(object) {
+  handleEating(object, type = BOOK) {
     let d = dist(this.x, this.y, object.x, object.y);
     let dx = object.x - this.x;
     let dy = object.y - this.y;
@@ -123,7 +126,10 @@ class Character {
       object.y += object.speed / 3.5 * Math.sin(angle);
 
       if (d < this.radius + object.radius) {
-        this.health += this.healthGainPerEat * 1.5;
+        this.health += 
+          type === BOOK 
+            ? this.healthGainPerEat 
+            : this.healthGainPerEat * 1.5;
         this.health = constrain(this.health, 0, this.maxHealth);
         object.health = 0
 
