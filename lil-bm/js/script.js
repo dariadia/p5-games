@@ -193,10 +193,10 @@ function setupBG() {
     }
   
     for (let j = 0; j < Math.floor(num_book / 2); j++) {
-      let bookObj1 = new Plant(BooksPosX[j], BooksPosY[j], 30, bookType1);
-      let bookObj2 = new Plant(BooksPosX[j], BooksPosY[j], 30, bookType3);
-      let bookObj3 = new Plant(BooksPosX[j], BooksPosY[j], 30, bookType6);
-      plants.concat(bookObj1, bookObj2, bookObj3);
+      let bookObj1 = new Book(BooksPosX[j], BooksPosY[j], 30, bookType1);
+      let bookObj2 = new Book(BooksPosX[j], BooksPosY[j], 30, bookType3);
+      let bookObj3 = new Book(BooksPosX[j], BooksPosY[j], 30, bookType6);
+      books.concat(bookObj1, bookObj2, bookObj3);
     }
 
   } else if (currentSeason === 1) {
@@ -205,10 +205,10 @@ function setupBG() {
       trees.push(treeObj);
     }
     for (let j = 0; j < Math.floor(num_book / 2); j++) {
-      let bookObj1 = new Plant(BooksPosX[j], BooksPosY[j], 30, bookType2);
-      let bookObj2 = new Plant(BooksPosX[j], BooksPosY[j], 30, bookType5);
-      let bookObj3 = new Plant(BooksPosX[j], BooksPosY[j], 30, bookType6);
-      plants.concat(bookObj1, bookObj2, bookObj3);
+      let bookObj1 = new Book(BooksPosX[j], BooksPosY[j], 30, bookType2);
+      let bookObj2 = new Book(BooksPosX[j], BooksPosY[j], 30, bookType5);
+      let bookObj3 = new Book(BooksPosX[j], BooksPosY[j], 30, bookType6);
+      books.concat(bookObj1, bookObj2, bookObj3);
     }
 
   } else if (currentSeason === 2) {
@@ -217,10 +217,10 @@ function setupBG() {
       trees.push(treeObj);
     }
     for (let j = 0; j < Math.floor(num_book / 2); j++) {
-      let bookObj1 = new Plant(BooksPosX[j], BooksPosY[j], 30, bookType4);
-      let bookObj2 = new Plant(BooksPosX[j], BooksPosY[j], 30, bookType7);
-      let bookObj3 = new Plant(BooksPosX[j], BooksPosY[j], 30, bookType8);
-      plants.concat(bookObj1, bookObj2, bookObj3);
+      let bookObj1 = new Book(BooksPosX[j], BooksPosY[j], 30, bookType4);
+      let bookObj2 = new Book(BooksPosX[j], BooksPosY[j], 30, bookType7);
+      let bookObj3 = new Book(BooksPosX[j], BooksPosY[j], 30, bookType8);
+      books.concat(bookObj1, bookObj2, bookObj3);
     }
 
   }
