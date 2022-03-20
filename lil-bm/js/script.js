@@ -8,7 +8,7 @@ let player2_texture;
 
 let singlePlayer = true;
 
-const NUM_SUNFLOWER = 10;
+const NUM_TREES = 10;
 let NUM_BOOKS = 100;
 
 const NUM_TYPE_ONE = 20;
@@ -77,6 +77,8 @@ const IMAGE_PATH = "assets/sprites"
 function preload() {
   bmRight = loadImage(`${IMAGE_PATH}/bm-right.png`);
   bmLeft = loadImage(`${IMAGE_PATH}/bm-left.png`);
+  bmOriginalsRight = loadImage(`${IMAGE_PATH}/bm-originals-right.png`);
+  bmOriginalsLeft = loadImage(`${IMAGE_PATH}/bm-originals-left.png`);
 
   bookVersion1 = loadImage(`${IMAGE_PATH}/book-1.png`);
   bookVersion2 = loadImage(`${IMAGE_PATH}/book-2.png`);
@@ -122,12 +124,10 @@ function setup() {
 
   setupBG();
 
-  append(players, lion);
-  append(players, wolf);
-  append(players, leopard);
-  append(players, lion_flipped);
-  append(players, wolf_flipped);
-  append(players, leopard_flipped);
+  append(players, bmOriginalsRight);
+  append(players, bmOriginalsLeft);
+  append(players, bmRight);
+  append(players, bmLeft);
   setupPlayer();
   player1 = new Character(100, 100, 2, 30, player1_texture, player1_texture_flipped, 87, 83, 65, 68, 70);
 
@@ -190,7 +190,7 @@ function setupBG() {
   num_book = 100; 
 
   if (currentSeason === 0) {
-    for (let i = 0; i < NUM_TREE; i++) {
+    for (let i = 0; i < NUM_TREES; i++) {
       let treeObj = new Tree(TreesPosX[i], TreesPosY[i], 60, sunflower);
       trees.push(treeObj);
     }
@@ -203,7 +203,7 @@ function setupBG() {
     }
 
   } else if (currentSeason === 1) {
-    for (let i = 0; i < NUM_TREE; i++) {
+    for (let i = 0; i < NUM_TREES; i++) {
       let treeObj = new Tree(TreesPosX[i], TreesPosY[i], 60, sunflower);
       trees.push(treeObj);
     }
@@ -215,7 +215,7 @@ function setupBG() {
     }
 
   } else if (currentSeason === 2) {
-    for (let i = 0; i < NUM_TREE; i++) {
+    for (let i = 0; i < NUM_TREES; i++) {
       let treeObj = new Tree(TreesPosX[i], TreesPosY[i], 60, tree);
       trees.push(treeObj);
     }
@@ -248,7 +248,7 @@ function nextSeason() {
 }
 
 function randomizeTreesPos() {
-  for (let i = 0; i < NUM_TREE; i++) {
+  for (let i = 0; i < NUM_TREES; i++) {
     TreesPosX[i] = random(0, width);
     TreesPosY[i] = random(0, height);
   }
@@ -268,7 +268,7 @@ function draw() {
       hearts[i].move();
       hearts[i].display(playing);
 
-      for (let j = 0; j < NUM_TREE; j++) {
+      for (let j = 0; j < NUM_TREES; j++) {
         hearts[i].collide(trees[j]);
       }
     }
@@ -294,7 +294,7 @@ function draw() {
       hearts[i].move();
       hearts[i].display(playing);
 
-      for (let j = 0; j < NUM_TREE; j++) {
+      for (let j = 0; j < NUM_TREES; j++) {
         hearts[i].collide(trees[j]);
       }
 
@@ -312,7 +312,7 @@ function draw() {
       books[i].move();
       books[i].display(playing);
 
-      for (let j = 0; j < NUM_TREE; j++) {
+      for (let j = 0; j < NUM_TREES; j++) {
         books[i].collide(trees[j]);
       }
 
@@ -331,7 +331,7 @@ function draw() {
       if (!player1.dead) {
         player1.handleInput();
         player1.move();
-        for (let k = 0; k < NUM_TREE; k++) {
+        for (let k = 0; k < NUM_TREES; k++) {
           player1.collide(trees[k]);
         }
       }
@@ -341,14 +341,14 @@ function draw() {
       if (!player1.dead) {
         player1.handleInput();
         player1.move();
-        for (let k = 0; k < NUM_TREE; k++) {
+        for (let k = 0; k < NUM_TREES; k++) {
           player1.collide(trees[k]);
         }
       }
       if (!player2.dead) {
         player2.handleInput();
         player2.move();
-        for (let k = 0; k < NUM_TREE; k++) {
+        for (let k = 0; k < NUM_TREES; k++) {
           player2.collide(trees[k]);
         }
       }
