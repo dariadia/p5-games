@@ -12,7 +12,7 @@ const NUM_SUNFLOWER = 10;
 let NUM_BOOKS = 100;
 
 const NUM_TYPE_ONE = 20;
-const NUM_TYPE_TWO = 10;
+const NUM_TYPE_TWO = 30;
 const NUM_HEARTS = [NUM_TYPE_ONE, NUM_TYPE_TWO];
 
 let playing = false;
@@ -23,11 +23,10 @@ let totalScore = 0;
 let runOnce = true;
 
 const SELECTED = "#ffd342";
-const SPRING = "#a0cc83";
-const SUMMER = "#61a65b";
-const FALL = "#dbbf72";
-const WINTER = "#a8bab4";
-const SEASONS = [SPRING, SUMMER, FALL, WINTER]; 
+const MORNING = "#a0cc83";
+const DAY = "#61a65b";
+const NIGHT = "#dbbf72";
+const SEASONS = [MORNING, DAY, NIGHT]; 
 let currentSeason;
 
 let SunflowerPosX = [];
@@ -184,38 +183,44 @@ function setupPlayer() {
 
 function setupBG() {
   trees = [];
-  plants = [];
-  num_plant = 100; 
+  books = [];
+  num_book = 100; 
 
   if (currentSeason === 0) {
     for (let i = 0; i < NUM_TREE; i++) {
-      let treeObj = new Tree(TreesPosX[i], TreesPosY[i], 60, tree_spring);
+      let treeObj = new Tree(TreesPosX[i], TreesPosY[i], 60, sunflower);
       trees.push(treeObj);
     }
   
-    for (let j = 0; j < num_plant; j++) {
-      let plantObj = new Plant(PlantsPosX[j], PlantsPosY[j], 30, plant_spring);
-      plants.push(plantObj);
+    for (let j = 0; j < Math.floor(num_book / 2); j++) {
+      let bookObj1 = new Plant(BooksPosX[j], BooksPosY[j], 30, bookType1);
+      let bookObj2 = new Plant(BooksPosX[j], BooksPosY[j], 30, bookType3);
+      let bookObj3 = new Plant(BooksPosX[j], BooksPosY[j], 30, bookType6);
+      plants.concat(bookObj1, bookObj2, bookObj3);
     }
 
   } else if (currentSeason === 1) {
     for (let i = 0; i < NUM_TREE; i++) {
-      let treeObj = new Tree(TreesPosX[i], TreesPosY[i], 60, tree_summer);
+      let treeObj = new Tree(TreesPosX[i], TreesPosY[i], 60, sunflower);
       trees.push(treeObj);
     }
-    for (let j = 0; j < num_plant; j++) {
-      let plantObj = new Plant(PlantsPosX[j], PlantsPosY[j], 30, plant_summer);
-      plants.push(plantObj);
+    for (let j = 0; j < Math.floor(num_book / 2); j++) {
+      let bookObj1 = new Plant(BooksPosX[j], BooksPosY[j], 30, bookType2);
+      let bookObj2 = new Plant(BooksPosX[j], BooksPosY[j], 30, bookType5);
+      let bookObj3 = new Plant(BooksPosX[j], BooksPosY[j], 30, bookType6);
+      plants.concat(bookObj1, bookObj2, bookObj3);
     }
 
   } else if (currentSeason === 2) {
     for (let i = 0; i < NUM_TREE; i++) {
-      let treeObj = new Tree(TreesPosX[i], TreesPosY[i], 60, tree_fall);
+      let treeObj = new Tree(TreesPosX[i], TreesPosY[i], 60, tree);
       trees.push(treeObj);
     }
-    for (let j = 0; j < num_plant; j++) {
-      let plantObj = new Plant(PlantsPosX[j], PlantsPosY[j], 30, plant_fall);
-      plants.push(plantObj);
+    for (let j = 0; j < Math.floor(num_book / 2); j++) {
+      let bookObj1 = new Plant(BooksPosX[j], BooksPosY[j], 30, bookType4);
+      let bookObj2 = new Plant(BooksPosX[j], BooksPosY[j], 30, bookType7);
+      let bookObj3 = new Plant(BooksPosX[j], BooksPosY[j], 30, bookType8);
+      plants.concat(bookObj1, bookObj2, bookObj3);
     }
 
   }
@@ -223,11 +228,9 @@ function setupBG() {
 
 function drawBG() {
   background(SEASONS[currentSeason]); 
-  for (let j = 0; j < plants.length; j++) {
-    plants[j].display();
+  for (let j = 0; j < books.length; j++) {
+    books[j].display();
   }
-
-  image(camp, campfirePosX, campfirePosY, 60, 60);
 
   for (let i = 0; i < trees.length; i++) {
     trees[i].display();
@@ -237,9 +240,7 @@ function drawBG() {
 
 function nextSeason() {
   currentSeason += 1;
-  if (currentSeason > 2) {
-    currentSeason = 0;
-  }
+  if (currentSeason > 2) currentSeason = 0;
   setupBG(); 
 }
 
@@ -250,10 +251,10 @@ function randomizeTreesPos() {
   }
 }
 
-function randomizePlantsPos() {
-  for (let i = 0; i < num_plant; i++) {
-    PlantsPosX[i] = random(0, width);
-    PlantsPosY[i] = random(0, height);
+function randomizeBooksPos() {
+  for (let i = 0; i < num_book; i++) {
+    BooksPosX[i] = random(0, width);
+    BooksPosY[i] = random(0, height);
   }
 }
 
