@@ -68,13 +68,9 @@ class Character {
         this.vx = 0;
       }
 
-      if (keyIsDown(this.upKey)) {
-        this.vy = -this.speed;
-      } else if (keyIsDown(this.downKey)) {
-        this.vy = this.speed;
-      } else {
-        this.vy = 0;
-      }
+      if (keyIsDown(this.upKey)) this.vy = -this.speed;
+      else if (keyIsDown(this.downKey)) this.vy = this.speed;
+      else this.vy = 0;
     }
   }
 
@@ -84,7 +80,7 @@ class Character {
 
     this.health -= this.healthLossPerMove;
     if (this.sprinting) {
-      this.health -= this.healthLossPerMove*1.5;
+      this.health -= this.healthLossPerMove * 1.5;
     }
     this.health = constrain(this.health, 0, this.maxHealth);
 
@@ -116,20 +112,20 @@ class Character {
     else if (this.y > height) this.y -= height;
   }
 
-  handleEating(heart) {
-    let d = dist(this.x, this.y, heart.x, heart.y);
-    let dx = heart.x - this.x;
-    let dy = heart.y - this.y;
+  handleEating(object) {
+    let d = dist(this.x, this.y, object.x, object.y);
+    let dx = object.x - this.x;
+    let dy = object.y - this.y;
     let angle = atan2(dy, dx);
 
     if (d <= 100 && !this.dead) {
-      heart.x += heart.speed / 3.5 * Math.cos(angle);
-      heart.y += heart.speed / 3.5 * Math.sin(angle);
+      object.x += object.speed / 3.5 * Math.cos(angle);
+      object.y += object.speed / 3.5 * Math.sin(angle);
 
-      if (d < this.radius + heart.radius) {
-        this.health += this.healthGainPerEat;
+      if (d < this.radius + object.radius) {
+        this.health += this.healthGainPerEat * 1.5;
         this.health = constrain(this.health, 0, this.maxHealth);
-        heart.health = 0
+        object.health = 0
 
         // scored_sound.setVolume(0.2);
         // scored_sound.play();

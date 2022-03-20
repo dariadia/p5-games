@@ -105,13 +105,10 @@ function preload() {
   sunflower = loadImage(`${IMAGE_PATH}/sunflower.png`);
   tree = loadImage(`${IMAGE_PATH}/tree.png`);
 
-  plant_spring = loadImage("assets/images/Plant_Spring.png");
-  plant_summer = loadImage("assets/images/Plant_Summer.png");
-  plant_fall = loadImage("assets/images/Plant_Fall.png");
-  plant_winter = loadImage("assets/images/Plant_Winter.png");
-
-  mushroomTexture = loadImage("assets/images/Mushroom.png");
-  camp = loadImage("assets/images/Camp.png");
+  heartType1 = loadImage(`${IMAGE_PATH}/heart-1.png`);
+  heartType2 = loadImage(`${IMAGE_PATH}/heart-2.png`);
+  heartType3 = loadImage(`${IMAGE_PATH}/heart-3.png`);
+  heartType4 = loadImage(`${IMAGE_PATH}/heart-4.png`);
 
   spring_bg = loadSound("assets/sounds/Spring.mp3");
   summer_bg = loadSound("assets/sounds/Summer.mp3");
@@ -525,7 +522,7 @@ function checkMainMenuButtons() {
     if (mouseIsPressed) {
       playing = true;
       singlePlayer = false;
-      player2 = new Predator(width - 100, 100, 2, 30, player2_texture, player2_texture_flipped, UP_ARROW, DOWN_ARROW, LEFT_ARROW, RIGHT_ARROW, 76);
+      player2 = new Character(width - 100, 100, 2, 30, player2_texture, player2_texture_flipped, UP_ARROW, DOWN_ARROW, LEFT_ARROW, RIGHT_ARROW, 76);
     }
   }
   pop();
@@ -609,7 +606,7 @@ function checkGameOverButtons() {
         bestScore = totalScore;
       }
 
-      player1 = new Predator(100, 100, 2, 30, player1_texture, player1_texture_flipped, 87, 83, 65, 68, 70);
+      player1 = new Character(100, 100, 2, 30, player1_texture, player1_texture_flipped, 87, 83, 65, 68, 70);
 
       setUpHearts(); 
       gameOver = false;
