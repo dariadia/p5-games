@@ -73,6 +73,7 @@ let noNewRecordSound;
 
 let playOnce = true;
 const IMAGE_PATH = "/lil-bm/assets/sprites"
+const SOUNDS_PATH = "/lil-bm/assets/sounds"
 
 function preload() {
   bmRight = loadImage(`${IMAGE_PATH}/bm-right.png`);
@@ -97,9 +98,9 @@ function preload() {
   heartType3 = loadImage(`${IMAGE_PATH}/heart-3.png`);
   heartType4 = loadImage(`${IMAGE_PATH}/heart-4.png`);
 
-  morningMusic  = loadSound("assets/sounds/morning.mp3");
-  dayMusic = loadSound("assets/sounds/day.mp3");
-  nightMusic = loadSound("assets/sounds/night.mp3");
+  morningMusic  = loadSound(`${SOUNDS_PATH}/morning.mp3`);
+  dayMusic = loadSound(`${SOUNDS_PATH}/day.mp3`);
+  nightMusic = loadSound(`${SOUNDS_PATH}/night.mp3`);
  
   music = [morningMusic, dayMusic, nightMusic];
 }
