@@ -29,8 +29,8 @@ const NIGHT = "#dbbf72";
 const SEASONS = [MORNING, DAY, NIGHT]; 
 let currentSeason;
 
-let SunflowerPosX = [];
-let SunflowerPosY = [];
+let TreePosX = [];
+let TreePosY = [];
 
 let BooksPosX = [];
 let BooksPosY = [];
@@ -60,16 +60,16 @@ let books = [];
 let hearts = [];
 let players = [];
 
-let spring_bg;
-let summer_bg;
-let fall_bg;
-let winter_bg;
-let bg_music = [];
-let eaten_sound;
-let scored_sound;
-let scored_sound_1;
-let newRecord_sound;
-let noNewRecord_sound;
+let morning_bg;
+let day_bg;
+let evening_bg;
+
+let music = [];
+
+let scoredSoundType1;
+let scoredSoundType2;
+let newRecordSound;
+let noNewRecordSound;
 
 let playOnce = true;
 const IMAGE_PATH = "assets/sprites"
@@ -97,16 +97,11 @@ function preload() {
   heartType3 = loadImage(`${IMAGE_PATH}/heart-3.png`);
   heartType4 = loadImage(`${IMAGE_PATH}/heart-4.png`);
 
-  spring_bg = loadSound("assets/sounds/Spring.mp3");
-  summer_bg = loadSound("assets/sounds/Summer.mp3");
-  fall_bg = loadSound("assets/sounds/Fall.mp3");
-  winter_bg = loadSound("assets/sounds/Winter.mp3");
-  bg_music = [spring_bg, summer_bg, fall_bg, winter_bg];
-  eaten_sound = loadSound("assets/sounds/Eaten.mp3");
-  scored_sound = loadSound("assets/sounds/Scored.mp3");
-  scored_sound_1 = loadSound("assets/sounds/Man_Killed.mp3");
-  newRecord_sound = loadSound("assets/sounds/Lion_Roar.mp3");
-  noNewRecord_sound = loadSound("assets/sounds/Wolf_Cry.mp3");
+  morningMusic  = loadSound("assets/sounds/morning.mp3");
+  dayMusic = loadSound("assets/sounds/day.mp3");
+  nightMusic = loadSound("assets/sounds/night.mp3");
+ 
+  music = [morningMusic, dayMusic, nightMusic];
 }
 
 function setup() {
@@ -278,14 +273,14 @@ function draw() {
     showMainMenu();
 
   } else if (playing) {
-    if (!bg_music[currentSeason].isPlaying()) {
+    if (!music[currentSeason].isPlaying()) {
       if (currentSeason === 0) {
-        bg_music[3].setVolume(0);
+        music[3].setVolume(0);
       } else {
-        bg_music[(currentSeason - 1)].setVolume(0);
+        music[(currentSeason - 1)].setVolume(0);
       }
-      bg_music[currentSeason].setVolume(0.2);
-      bg_music[currentSeason].play();
+      music[currentSeason].setVolume(0.2);
+      music[currentSeason].play();
     }
     checkGameOver();
     checkScore();
@@ -491,11 +486,11 @@ function displayGameOver() {
     fill(255);
     text("YOUR PREV BEST SCORE: " + bestScore, width / 2, height / 2 - 150);
 
-    if (!newRecord_sound.isPlaying() && playOnce) {
-      newRecord_sound.setVolume(0.2);
-      newRecord_sound.play();
-      playOnce = false;
-    }
+    // if (!newRecord_sound.isPlaying() && playOnce) {
+    //   newRecord_sound.setVolume(0.2);
+    //   newRecord_sound.play();
+    //   playOnce = false;
+    // }
 
   } else {
     fill(SELECTED);
@@ -506,11 +501,11 @@ function displayGameOver() {
     fill(255);
     text("YOUR BEST SCORE: " + bestScore, width / 2, height / 2 - 150);
 
-    if (!noNewRecord_sound.isPlaying() && playOnce) {
-      noNewRecord_sound.setVolume(0.2);
-      noNewRecord_sound.play();
-      playOnce = false;
-    }
+    // if (!noNewRecord_sound.isPlaying() && playOnce) {
+    //   noNewRecord_sound.setVolume(0.2);
+    //   noNewRecord_sound.play();
+    //   playOnce = false;
+    // }
   }
 
   fill(255, 100);
