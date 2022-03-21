@@ -29,8 +29,8 @@ const NIGHT = "#dbbf72";
 const SEASONS = [MORNING, DAY, NIGHT]; 
 let currentSeason;
 
-let TreePosX = [];
-let TreePosY = [];
+let TreesPosX = [];
+let TreesPosY = [];
 
 let BooksPosX = [];
 let BooksPosY = [];
