@@ -2,9 +2,6 @@
 // is controlled by the player
 // collects hearts and books
 
-const HEART = 'heart'
-const BOOK = 'book'
-
 class Character {
   constructor(x, y, speed, radius, texture, texture_flipped, upKey, downKey, leftKey, rightKey, sprintKey) {
     this.x = x;
