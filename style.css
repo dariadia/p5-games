@@ -5,3 +5,8 @@ html, body {
 canvas {
   display: block;
 }
+
+li:hover {
+  box-shadow: 3px 6px 4px 4px rgba(166, 238, 208, 0.3)!important;
+  transition: 0.3s box-shadow;
+}
