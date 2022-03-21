@@ -72,7 +72,7 @@ let newRecordSound;
 let noNewRecordSound;
 
 let playOnce = true;
-const IMAGE_PATH = "assets/sprites"
+const IMAGE_PATH = "/lil-bm/assets/sprites"
 
 function preload() {
   bmRight = loadImage(`${IMAGE_PATH}/bm-right.png`);

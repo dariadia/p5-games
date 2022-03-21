@@ -9,14 +9,14 @@ let male
 let donkey
 
 function preload() {
-  rainbow = loadSound('assets/rainbow.mp3');
-  pooratNaLes = loadSound('assets/poorat-na-les.mp3');
-  dragons = loadSound('assets/dragons.mp3');
-  crowander = loadSound('assets/crowander.mp3');
-  monster = loadSound('assets/monster.mp3');
-  giant = loadSound('assets/giant.mp3');
-  male = loadSound('assets/male.mp3');
-  donkey = loadSound('assets/donkey.mp3');
+  rainbow = loadSound('/forest/assets/rainbow.mp3');
+  pooratNaLes = loadSound('/forest/assets/poorat-na-les.mp3');
+  dragons = loadSound('/forest/assets/dragons.mp3');
+  crowander = loadSound('/forest/assets/crowander.mp3');
+  monster = loadSound('/forest/assets/monster.mp3');
+  giant = loadSound('/forest/assets/giant.mp3');
+  male = loadSound('/forest/assets/male.mp3');
+  donkey = loadSound('/forest/assets/donkey.mp3');
 }
 
 function setup() {
