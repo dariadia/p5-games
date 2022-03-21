@@ -1,4 +1,4 @@
-class Book extends Sunflower {
+class Book extends Tree {
   constructor(x, y, radius, texture) {
     super(x, y, radius, texture);
     this.maxHealth = 100;
