@@ -191,8 +191,8 @@ function setupBG() {
   
     for (let j = 0; j < Math.floor(NUM_BOOKS / 3); j++) {
       let bookObj1 = new Book(BooksPosX[j], BooksPosY[j], 30, bookType1);
-      let bookObj2 = new Book(BooksPosX[j], BooksPosY[j], 30, bookType3);
-      let bookObj3 = new Book(BooksPosX[j], BooksPosY[j], 30, bookType6);
+      let bookObj2 = new Book(BooksPosX[j + NUM_BOOKS / 3], BooksPosY[j + NUM_BOOKS / 3], 30, bookType3);
+      let bookObj3 = new Book(BooksPosX[j + (NUM_BOOKS / 3) * 2], BooksPosY[j + (NUM_BOOKS / 3) * 2], 30, bookType6);
       books = books.concat(bookObj1, bookObj2, bookObj3);
     }
 
@@ -203,11 +203,11 @@ function setupBG() {
     }
     for (let j = 0; j < Math.floor(NUM_BOOKS / 3); j++) {
       let bookObj1 = new Book(BooksPosX[j], BooksPosY[j], 30, bookType2);
-      let bookObj2 = new Book(BooksPosX[j], BooksPosY[j], 30, bookType5);
-      let bookObj3 = new Book(BooksPosX[j], BooksPosY[j], 30, bookType6);
+      let bookObj2 = new Book(BooksPosX[j + NUM_BOOKS / 3], BooksPosY[j + NUM_BOOKS / 3], 30, bookType5);
+      let bookObj3 = new Book(BooksPosX[j + (NUM_BOOKS / 3) * 2], BooksPosY[j + (NUM_BOOKS / 3) * 2], 30, bookType6);
       books = books.concat(bookObj1, bookObj2, bookObj3);
     }
-
+console.log("books", books)
   } else if (currentSeason === 2) {
     for (let i = 0; i < NUM_TREES; i++) {
       let treeObj = new Tree(TreesPosX[i], TreesPosY[i], 60, tree);
@@ -215,8 +215,8 @@ function setupBG() {
     }
     for (let j = 0; j < Math.floor(NUM_BOOKS / 3); j++) {
       let bookObj1 = new Book(BooksPosX[j], BooksPosY[j], 30, bookType4);
-      let bookObj2 = new Book(BooksPosX[j], BooksPosY[j], 30, bookType7);
-      let bookObj3 = new Book(BooksPosX[j], BooksPosY[j], 30, bookType8);
+      let bookObj2 = new Book(BooksPosX[j + NUM_BOOKS / 3], BooksPosY[j + NUM_BOOKS / 3], 30, bookType7);
+      let bookObj3 = new Book(BooksPosX[j + (NUM_BOOKS / 3) * 2], BooksPosY[j + (NUM_BOOKS / 3) * 2], 30, bookType8);
       books = books.concat(bookObj1, bookObj2, bookObj3);
     }
 
@@ -304,7 +304,6 @@ function draw() {
     }
 
     for (let i = 0; i < books.length; i++) {
-      books[i].move();
       books[i].display(playing);
 
       for (let j = 0; j < NUM_TREES; j++) {
