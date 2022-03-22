@@ -9,7 +9,7 @@ let player2_texture;
 let singlePlayer = true;
 
 const NUM_TREES = 10;
-let NUM_BOOKS = 100;
+const NUM_BOOKS = 90;
 
 const NUM_TYPE_ONE = 20;
 const NUM_TYPE_TWO = 30;
@@ -182,7 +182,6 @@ function setupPlayer() {
 function setupBG() {
   trees = [];
   books = [];
-  NUM_BOOKS = 100; 
 
   if (currentSeason === 0) {
     for (let i = 0; i < NUM_TREES; i++) {
@@ -190,7 +189,7 @@ function setupBG() {
       trees.push(treeObj);
     }
   
-    for (let j = 0; j < Math.floor(NUM_BOOKS / 2); j++) {
+    for (let j = 0; j < Math.floor(NUM_BOOKS / 3); j++) {
       let bookObj1 = new Book(BooksPosX[j], BooksPosY[j], 30, bookType1);
       let bookObj2 = new Book(BooksPosX[j], BooksPosY[j], 30, bookType3);
       let bookObj3 = new Book(BooksPosX[j], BooksPosY[j], 30, bookType6);
@@ -202,7 +201,7 @@ function setupBG() {
       let treeObj = new Tree(TreesPosX[i], TreesPosY[i], 60, sunflower);
       trees.push(treeObj);
     }
-    for (let j = 0; j < Math.floor(NUM_BOOKS / 2); j++) {
+    for (let j = 0; j < Math.floor(NUM_BOOKS / 3); j++) {
       let bookObj1 = new Book(BooksPosX[j], BooksPosY[j], 30, bookType2);
       let bookObj2 = new Book(BooksPosX[j], BooksPosY[j], 30, bookType5);
       let bookObj3 = new Book(BooksPosX[j], BooksPosY[j], 30, bookType6);
@@ -214,7 +213,7 @@ function setupBG() {
       let treeObj = new Tree(TreesPosX[i], TreesPosY[i], 60, tree);
       trees.push(treeObj);
     }
-    for (let j = 0; j < Math.floor(NUM_BOOKS / 2); j++) {
+    for (let j = 0; j < Math.floor(NUM_BOOKS / 3); j++) {
       let bookObj1 = new Book(BooksPosX[j], BooksPosY[j], 30, bookType4);
       let bookObj2 = new Book(BooksPosX[j], BooksPosY[j], 30, bookType7);
       let bookObj3 = new Book(BooksPosX[j], BooksPosY[j], 30, bookType8);
