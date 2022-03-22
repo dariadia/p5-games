@@ -120,10 +120,11 @@ function setup() {
 
   setupBG();
 
-  append(players, bmOriginalsRight);
   append(players, bmOriginalsLeft);
-  append(players, bmRight);
+  append(players, bmOriginalsRight);
   append(players, bmLeft);
+  append(players, bmRight);
+
   setupPlayer();
   player1 = new Character(100, 100, 2, 30, player1_texture, player1_texture_flipped, 87, 83, 65, 68, 70);
 
