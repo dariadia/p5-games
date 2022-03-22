@@ -207,7 +207,7 @@ function setupBG() {
       let bookObj3 = new Book(BooksPosX[j + (NUM_BOOKS / 3) * 2], BooksPosY[j + (NUM_BOOKS / 3) * 2], 30, bookType6);
       books = books.concat(bookObj1, bookObj2, bookObj3);
     }
-console.log("books", books)
+
   } else if (currentSeason === 2) {
     for (let i = 0; i < NUM_TREES; i++) {
       let treeObj = new Tree(TreesPosX[i], TreesPosY[i], 60, tree);
