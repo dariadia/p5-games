@@ -121,6 +121,7 @@ function setup() {
   randomizeBooksPos(); 
 
   setupBG();
+  noLoop();
 
   append(players, bmLeft);
   append(players, bmRight);
@@ -226,7 +227,6 @@ function setupBG() {
 }
 
 function setGradient(x, y, w, h, c1, c2) {
-  console.log(x, y, w, h, c1, c2)
   noFill();
   for (let i = y; i <= y + h; i++) {
     let inter = map(i, y, y + h, 0, 1);
@@ -237,7 +237,7 @@ function setGradient(x, y, w, h, c1, c2) {
 }
 
 function drawBG() {
-  setGradient(50, 90, 540, 80, ...SEASONS[currentSeason]);
+  setGradient(0, 0, width, height, ...SEASONS[currentSeason]);
 
   for (let j = 0; j < books.length; j++) {
     books[j].display();
