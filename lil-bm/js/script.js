@@ -193,6 +193,7 @@ function setupBG() {
       let bookObj1 = new Book(BooksPosX[j], BooksPosY[j], 30, bookType1);
       let bookObj2 = new Book(BooksPosX[j], BooksPosY[j], 30, bookType3);
       let bookObj3 = new Book(BooksPosX[j], BooksPosY[j], 30, bookType6);
+      console.log(Math.floor(NUM_BOOKS / 3), books, bookObj1, bookObj2, bookObj3)
       books.concat(bookObj1, bookObj2, bookObj3);
     }
 
@@ -225,7 +226,7 @@ function setupBG() {
 
 function drawBG() {
   background(SEASONS[currentSeason]); 
-  console.log(books)
+
   for (let j = 0; j < books.length; j++) {
     books[j].display();
   }
