@@ -236,7 +236,7 @@ function setGradient(x, y, w, h, c1, c2) {
 }
 
 function drawBG() {
-  setGradient(0, 0, width, height, ...SEASONS[currentSeason]);
+  background(setGradient(0, 0, width, height, ...SEASONS[currentSeason]));
 
   for (let j = 0; j < books.length; j++) {
     books[j].display();
