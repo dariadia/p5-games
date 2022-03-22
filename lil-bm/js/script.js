@@ -225,6 +225,7 @@ function setupBG() {
 
 function drawBG() {
   background(SEASONS[currentSeason]); 
+  console.log(books)
   for (let j = 0; j < books.length; j++) {
     books[j].display();
   }
