@@ -59,10 +59,10 @@ class Character {
     } else {
       this.sprinting = false;
       if (keyIsDown(this.leftKey)) {
-        this.faceLeft = true;
+        this.faceLeft = false;
         this.vx = -this.speed;
       } else if (keyIsDown(this.rightKey)) {
-        this.faceLeft = false;
+        this.faceLeft = true;
         this.vx = this.speed;
       } else {
         this.vx = 0;

@@ -226,7 +226,6 @@ function setupBG() {
 }
 
 function setGradient(x, y, w, h, c1, c2) {
-
   for (let i = y; i <= y + h; i++) {
     let inter = map(i, y, y + h, 0, 1);
     let c = lerpColor(color(c1), color(c2), inter);
