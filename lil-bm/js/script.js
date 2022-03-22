@@ -23,9 +23,9 @@ let totalScore = 0;
 let runOnce = true;
 
 
-const MORNING_1 = color('#ff5f6d'), MORNING_2 = color('#ffc371');
-const DAY_1 = color('#00b09b'), DAY_2 = color('#96c93d');
-const NIGHT_1 = color('#0f2027'), NIGHT_2 = color('#203a43');
+const MORNING_1 = '#ff5f6d', MORNING_2 = '#ffc371';
+const DAY_1 = '#00b09b', DAY_2 = '#96c93d';
+const NIGHT_1 = '#0f2027', NIGHT_2 = '#203a43';
 const SELECTED = "#ffd342";
 
 const SEASONS = [[MORNING_1, MORNING_2], [DAY_1, DAY_2], [NIGHT_1, NIGHT_2]]; 
@@ -226,10 +226,11 @@ function setupBG() {
 }
 
 function setGradient(x, y, w, h, c1, c2) {
+  console.log(x, y, w, h, c1, c2)
   noFill();
   for (let i = y; i <= y + h; i++) {
     let inter = map(i, y, y + h, 0, 1);
-    let c = lerpColor(c1, c2, inter);
+    let c = lerpColor(color(c1), color(c2), inter);
     stroke(c);
     line(x, i, x + w, i);
   }
