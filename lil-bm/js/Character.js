@@ -17,8 +17,8 @@ class Character {
     // Health
     this.maxHealth = this.radius;
     this.health = this.maxHealth;
-    this.healthLossPerMove = 0.15;
-    this.originalHealthPerEat = 1;
+    this.healthLossPerMove = 0.1;
+    this.originalHealthPerEat = 2;
     this.healthGainPerEat = this.originalHealthPerEat;
     // skins
     this.texture = texture;
@@ -123,12 +123,10 @@ class Character {
       object.y += object.speed / 3.5 * Math.sin(angle);
 
       if (d < this.radius + object.radius) {
-        console.log("health before", this.health, type)
         this.health += 
           type === 'book' 
             ? this.healthGainPerEat 
             : this.healthGainPerEat * 1.5;
-          console.log("health after", this.health, type)
         this.health = constrain(this.health, 0, this.maxHealth);
         object.health = 0
 
