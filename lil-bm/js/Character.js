@@ -133,7 +133,7 @@ class Character {
         // scored_sound.setVolume(0.2);
         // scored_sound.play();
 
-        heart.reset();
+        object.reset();
         this.score += 0.5; 
         if (this.score % 10 === 0 && this.score >= 10) {
           this.healthLossPerMove -= 0.005;
