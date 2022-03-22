@@ -18,7 +18,7 @@ class Character {
     this.maxHealth = this.radius;
     this.health = this.maxHealth;
     this.healthLossPerMove = 0.1;
-    this.originalHealthPerEat = 2;
+    this.originalHealthPerEat = 3;
     this.healthGainPerEat = this.originalHealthPerEat;
     // skins
     this.texture = texture;
@@ -126,15 +126,12 @@ class Character {
         this.health += 
           type === BOOK 
             ? this.healthGainPerEat 
-            : this.healthGainPerEat * 1.5;
+            : this.healthGainPerEat * 2;
         this.health = constrain(this.health, 0, this.maxHealth);
         object.health = 0
 
-        // scored_sound.setVolume(0.2);
-        // scored_sound.play();
-
         object.reset();
-        this.score += 0.5; 
+        this.score += 1; 
         if (this.score % 10 === 0 && this.score >= 10) {
           this.healthLossPerMove -= 0.005;
           this.healthLossPerMove = constrain(this.healthLossPerMove, 0.1, 0.15)

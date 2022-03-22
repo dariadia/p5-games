@@ -61,11 +61,8 @@ let books = [];
 let hearts = [];
 let players = [];
 
-let morning_bg;
-let day_bg;
-let evening_bg;
-
 let music = [];
+let scoreSound;
 
 let scoredSoundType1;
 let scoredSoundType2;
@@ -102,6 +99,7 @@ function preload() {
   morningMusic  = loadSound(`${SOUNDS_PATH}/morning.mp3`);
   dayMusic = loadSound(`${SOUNDS_PATH}/day.mp3`);
   nightMusic = loadSound(`${SOUNDS_PATH}/night.mp3`);
+  scoreSound = loadSound(`${SOUNDS_PATH}/score.mp3`);
  
   music = [morningMusic, dayMusic, nightMusic];
 }
@@ -486,6 +484,12 @@ function displayGameOver() {
   textAlign(CENTER, CENTER);
   textSize(64);
 
+  if (!scoreSound.isPlaying() && playOnce) {
+    scoreSound.setVolume(0.2);
+    scoreSound.play();
+    playOnce = false;
+  }
+
   if (bestScore < totalScore) {
     fill(SELECTED);
     text("YOU GOT A NEW RECORD!", width / 2, height / 2 - 200);
@@ -494,13 +498,6 @@ function displayGameOver() {
     textSize(32);
     fill(255);
     text("YOUR PREV BEST SCORE: " + bestScore, width / 2, height / 2 - 150);
-
-    // if (!newRecord_sound.isPlaying() && playOnce) {
-    //   newRecord_sound.setVolume(0.2);
-    //   newRecord_sound.play();
-    //   playOnce = false;
-    // }
-
   } else {
     fill(SELECTED);
     text("YOU CAN DO BETTER!", width / 2, height / 2 - 200);
@@ -509,12 +506,6 @@ function displayGameOver() {
     textSize(32);
     fill(255);
     text("YOUR BEST SCORE: " + bestScore, width / 2, height / 2 - 150);
-
-    // if (!noNewRecord_sound.isPlaying() && playOnce) {
-    //   noNewRecord_sound.setVolume(0.2);
-    //   noNewRecord_sound.play();
-    //   playOnce = false;
-    // }
   }
 
   fill(255, 100);
