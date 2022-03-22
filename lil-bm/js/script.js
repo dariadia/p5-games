@@ -40,10 +40,9 @@ let BooksPosY = [];
 let campfirePosX = 0;
 let campfirePosY = 0;
 
-const RULES = `TODO, eat this, collect that`
+const RULES = `Collect hearts and read books to boost your health.`
 
-const STARTOVER = `You may be dead, but your race lives on
-  You can start over again.`
+const STARTOVER = `You may be dead, but your soul lives on.\nYou can start over again.`
 
 let sunflower;
 let tree;
