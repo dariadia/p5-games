@@ -8,11 +8,11 @@ let player2_texture;
 
 let singlePlayer = true;
 
-const NUM_TREES = 10;
-const NUM_BOOKS = 90;
+const NUM_TREES = 7;
+const NUM_BOOKS = 66;
 
-const NUM_TYPE_ONE = 20;
-const NUM_TYPE_TWO = 30;
+const NUM_TYPE_ONE = 15;
+const NUM_TYPE_TWO = 20;
 const NUM_HEARTS = [NUM_TYPE_ONE, NUM_TYPE_TWO];
 
 let playing = false;
