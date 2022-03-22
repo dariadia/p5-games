@@ -22,9 +22,7 @@ let bestScore = 0;
 let totalScore = 0;
 let runOnce = true;
 
-const MORNING_1 = '#ff5f6d', MORNING_2 = '#ffc371';
-const DAY_1 = '#00b09b', DAY_2 = '#96c93d';
-const NIGHT_1 = '#0f2027', NIGHT_2 = '#203a43';
+let MORNING_1, MORNING_2, DAY_1, DAY_2, NIGHT_1, NIGHT_2
 const SELECTED = "#ffd342";
 
 const SEASONS = [[MORNING_1, MORNING_2], [DAY_1, DAY_2], [NIGHT_1, NIGHT_2]]; 
@@ -114,6 +112,10 @@ function setup() {
   imageMode(CENTER);
   rectMode(CENTER);
   noStroke();
+
+  MORNING_1 = color('#ff5f6d'), MORNING_2 = color('#ffc371');
+  DAY_1 = color('#00b09b'), DAY_2 = color('#96c93d');
+  NIGHT_1 = color('#0f2027'), NIGHT_2 = color('#203a43');
 
   currentSeason = int(random(0, 3)); 
   randomizeTreesPos(); 
