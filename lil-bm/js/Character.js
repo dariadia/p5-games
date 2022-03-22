@@ -112,7 +112,7 @@ class Character {
     else if (this.y > height) this.y -= height;
   }
 
-  handleEating(object, type = 'book') {
+  handleEating(object, type = BOOK) {
     let d = dist(this.x, this.y, object.x, object.y);
     let dx = object.x - this.x;
     let dy = object.y - this.y;
@@ -124,7 +124,7 @@ class Character {
 
       if (d < this.radius + object.radius) {
         this.health += 
-          type === 'book' 
+          type === BOOK 
             ? this.healthGainPerEat 
             : this.healthGainPerEat * 1.5;
         this.health = constrain(this.health, 0, this.maxHealth);
