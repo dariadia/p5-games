@@ -81,13 +81,6 @@ class Heart {
     } else {
       image(this.texture_flipped, this.x, this.y, this.radius * 2, this.radius * 2);
     }
-
-    if (inGame) {
-      fill(100);
-      rect(this.x - this.radius, this.y - 40, this.radius * 2, 5);
-      fill(0, 255, 0);
-      rect(this.x - this.radius, this.y - 40, this.health * 2, 5);
-    }
     pop();
   }
 
