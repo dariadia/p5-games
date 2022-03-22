@@ -175,8 +175,8 @@ function setUpHearts() {
 function setupPlayer() {
   player1_texture = players[0];
   player1_texture_flipped = players[1];
-  player2_texture = players[3];
-  player2_texture_flipped = players[2];
+  player2_texture = players[2];
+  player2_texture_flipped = players[3];
 }
 
 
@@ -584,7 +584,7 @@ function checkGameOverButtons() {
         bestScore = totalScore;
       }
       player1 = new Character(100, 100, 2, 30, player1_texture, player1_texture_flipped, 87, 83, 65, 68, 70);
-      player2 = new Character(width - 100, 100, 2, 30, player2_texture, player2_texture_flipped, UP_ARROW, DOWN_ARROW, LEFT_ARROW, RIGHT_ARROW, 76);
+      player2 = new Character(width - 100, 100, 2, 30, player2_texture_flipped, player2_texture, UP_ARROW, DOWN_ARROW, LEFT_ARROW, RIGHT_ARROW, 76);
 
       setUpHearts();
       gameOver = false;
