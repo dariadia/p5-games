@@ -407,7 +407,7 @@ function showMainMenu() {
   fill(255);
   text(RULES, width / 2, height / 2 - 150); // rules
   textSize(128);
-  text("E A R T H", width / 2, height / 2); // title
+  text("LIL' BOOKMATE ADVENTURE", width / 2, height / 2); // title
   textSize(32);
 
   textAlign(RIGHT, CENTER);
