@@ -276,7 +276,7 @@ function draw() {
   } else if (playing) {
     if (!music[currentSeason].isPlaying()) {
       if (currentSeason === 0) {
-        music[3].setVolume(0);
+        music[0].setVolume(0);
       } else {
         music[(currentSeason - 1)].setVolume(0);
       }
