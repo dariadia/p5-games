@@ -121,7 +121,6 @@ function setup() {
   randomizeBooksPos(); 
 
   setupBG();
-  noLoop();
 
   append(players, bmLeft);
   append(players, bmRight);
