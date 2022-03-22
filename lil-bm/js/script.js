@@ -22,11 +22,12 @@ let bestScore = 0;
 let totalScore = 0;
 let runOnce = true;
 
+const MORNING_1 = '#ff5f6d', MORNING_2 = '#ffc371';
+const DAY_1 = '#ff5f6d', DAY_2 = '#ffc371';
+const NIGHT_1 = '#ff5f6d', NIGHT_2 = '#ffc371';
 const SELECTED = "#ffd342";
-const MORNING = "#a0cc83";
-const DAY = "#61a65b";
-const NIGHT = "#dbbf72";
-const SEASONS = [MORNING, DAY, NIGHT]; 
+
+const SEASONS = [[MORNING_1, MORNING_2], [DAY_1, DAY_2], [NIGHT_1, NIGHT_2]]; 
 let currentSeason;
 
 let TreesPosX = [];
@@ -223,8 +224,18 @@ function setupBG() {
   }
 }
 
+function setGradient(x, y, w, h, c1, c2) {
+  noFill();
+  for (let i = y; i <= y + h; i++) {
+    let inter = map(i, y, y + h, 0, 1);
+    let c = lerpColor(c1, c2, inter);
+    stroke(c);
+    line(x, i, x + w, i);
+  }
+}
+
 function drawBG() {
-  background(SEASONS[currentSeason]); 
+  setGradient(50, 90, 540, 80, ...SEASONS[currentSeason]);
 
   for (let j = 0; j < books.length; j++) {
     books[j].display();
