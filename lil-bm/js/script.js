@@ -81,14 +81,14 @@ function preload() {
   bmOriginalsRight = loadImage(`${IMAGE_PATH}/bm-originals-right.png`);
   bmOriginalsLeft = loadImage(`${IMAGE_PATH}/bm-originals-left.png`);
 
-  bookVersion1 = loadImage(`${IMAGE_PATH}/book-1.png`);
-  bookVersion2 = loadImage(`${IMAGE_PATH}/book-2.png`);
-  bookVersion3 = loadImage(`${IMAGE_PATH}/book-3.png`);
-  bookVersion4 = loadImage(`${IMAGE_PATH}/book-4.png`);
-  bookVersion5 = loadImage(`${IMAGE_PATH}/book-5.png`);
-  bookVersion6 = loadImage(`${IMAGE_PATH}/book-6.png`);
-  bookVersion7 = loadImage(`${IMAGE_PATH}/book-7.png`);
-  bookVersion8 = loadImage(`${IMAGE_PATH}/book-8.png`);
+  bookType1 = loadImage(`${IMAGE_PATH}/book-1.png`);
+  bookType2 = loadImage(`${IMAGE_PATH}/book-2.png`);
+  bookType3 = loadImage(`${IMAGE_PATH}/book-3.png`);
+  bookType4 = loadImage(`${IMAGE_PATH}/book-4.png`);
+  bookType5 = loadImage(`${IMAGE_PATH}/book-5.png`);
+  bookType6 = loadImage(`${IMAGE_PATH}/book-6.png`);
+  bookType7 = loadImage(`${IMAGE_PATH}/book-7.png`);
+  bookType8 = loadImage(`${IMAGE_PATH}/book-8.png`);
 
   sunflower = loadImage(`${IMAGE_PATH}/sunflower.png`);
   tree = loadImage(`${IMAGE_PATH}/tree.png`);
@@ -193,7 +193,7 @@ function setupBG() {
       let bookObj1 = new Book(BooksPosX[j], BooksPosY[j], 30, bookType1);
       let bookObj2 = new Book(BooksPosX[j], BooksPosY[j], 30, bookType3);
       let bookObj3 = new Book(BooksPosX[j], BooksPosY[j], 30, bookType6);
-      console.log(Math.floor(NUM_BOOKS / 3), books, bookObj1, bookObj2, bookObj3)
+      console.log(books, bookObj1, bookObj2, bookObj3)
       books.concat(bookObj1, bookObj2, bookObj3);
     }
 
