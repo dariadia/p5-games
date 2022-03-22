@@ -123,12 +123,12 @@ class Character {
       object.y += object.speed / 3.5 * Math.sin(angle);
 
       if (d < this.radius + object.radius) {
-        console.log("health before", this.health, type === 'book')
+        console.log("health before", this.health, type)
         this.health += 
           type === 'book' 
             ? this.healthGainPerEat 
             : this.healthGainPerEat * 1.5;
-          console.log("health after", this.health)
+          console.log("health after", this.health, type)
         this.health = constrain(this.health, 0, this.maxHealth);
         object.health = 0
 
