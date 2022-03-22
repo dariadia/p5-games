@@ -23,8 +23,8 @@ let totalScore = 0;
 let runOnce = true;
 
 const MORNING_1 = '#ff5f6d', MORNING_2 = '#ffc371';
-const DAY_1 = '#ff5f6d', DAY_2 = '#ffc371';
-const NIGHT_1 = '#ff5f6d', NIGHT_2 = '#ffc371';
+const DAY_1 = '#00b09b', DAY_2 = '#96c93d';
+const NIGHT_1 = '#0f2027', NIGHT_2 = '#203a43';
 const SELECTED = "#ffd342";
 
 const SEASONS = [[MORNING_1, MORNING_2], [DAY_1, DAY_2], [NIGHT_1, NIGHT_2]]; 
