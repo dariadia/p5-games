@@ -120,10 +120,10 @@ function setup() {
 
   setupBG();
 
-  append(players, bmOriginalsLeft);
-  append(players, bmOriginalsRight);
   append(players, bmLeft);
   append(players, bmRight);
+  append(players, bmOriginalsLeft);
+  append(players, bmOriginalsRight);
 
   setupPlayer();
   player1 = new Character(100, 100, 2, 30, player1_texture, player1_texture_flipped, 87, 83, 65, 68, 70);
@@ -172,12 +172,10 @@ function setUpHearts() {
 }
 
 function setupPlayer() {
-  let randomIndex = int(random(0, 3));
-  player1_texture = players[randomIndex];
-  player1_texture_flipped = players[randomIndex + 3];
-  randomIndex = int(random(0, 3));
-  player2_texture = players[randomIndex];
-  player2_texture_flipped = players[randomIndex + 3];
+  player1_texture = players[0];
+  player1_texture_flipped = players[1];
+  player2_texture = players[2];
+  player2_texture_flipped = players[3];
 }
 
 
