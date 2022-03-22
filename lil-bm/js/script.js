@@ -96,8 +96,8 @@ function preload() {
 
   heartType1 = loadImage(`${IMAGE_PATH}/heart-1.png`);
   heartType2 = loadImage(`${IMAGE_PATH}/heart-5.png`);
-  heartType3 = loadImage(`${IMAGE_PATH}/heart-3.png`);
-  heartType4 = loadImage(`${IMAGE_PATH}/heart-4.png`);
+  heartType3 = loadImage(`${IMAGE_PATH}/heart-4.png`);
+  heartType4 = loadImage(`${IMAGE_PATH}/heart-3.png`);
 
   morningMusic  = loadSound(`${SOUNDS_PATH}/morning.mp3`);
   dayMusic = loadSound(`${SOUNDS_PATH}/day.mp3`);
