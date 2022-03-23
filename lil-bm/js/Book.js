@@ -22,11 +22,8 @@ class Book extends Tree {
     noStroke();
     imageMode(CENTER);
 
-    if (this.faceLeft) {
-      image(this.texture, this.x, this.y, this.radius * 2, this.radius * 2);
-    } else {
-      image(this.texture_flipped, this.x, this.y, this.radius * 2, this.radius * 2);
-    }
+    image(this.texture, this.x, this.y, this.radius * 2, this.radius * 2);
+
     pop();
   }
 
