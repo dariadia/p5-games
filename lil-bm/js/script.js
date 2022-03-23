@@ -118,7 +118,6 @@ function setup() {
   randomizeBooksPos(); 
 
   setupBG();
-  console.log("books", books)
 
   append(players, bmLeft);
   append(players, bmRight);
@@ -129,6 +128,7 @@ function setup() {
   player1 = new Character(100, 100, 2, 30, player1_texture, player1_texture_flipped, 87, 83, 65, 68, 70);
 
   setUpHearts();
+  console.log("books", books)
 }
 
 function setUpHearts() {
@@ -262,7 +262,6 @@ function randomizeBooksPos() {
     BooksPosX[i] = random(0, width);
     BooksPosY[i] = random(0, height);
   }
-  console.log("BooksPosX", BooksPosX, BooksPosY)
 }
 
 function draw() {
@@ -320,6 +319,7 @@ function draw() {
       }
 
       if (!player1.dead) {
+        console.log(books[i])
         player1.handleEating(books[i], BOOK);
       }
       if (!singlePlayer) {
