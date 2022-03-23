@@ -117,7 +117,6 @@ class Character {
     let dx = object.x - this.x;
     let dy = object.y - this.y;
     let angle = atan2(dy, dx);
-    console.log("handleEating", object, type)
 
     if (d <= 100 && !this.dead) {
       object.x += object.speed / 3.5 * Math.cos(angle);
