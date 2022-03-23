@@ -262,6 +262,7 @@ function randomizeBooksPos() {
     BooksPosX[i] = random(0, width);
     BooksPosY[i] = random(0, height);
   }
+  console.log("BooksPosX", BooksPosX, BooksPosY)
 }
 
 function draw() {
