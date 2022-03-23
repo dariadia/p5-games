@@ -113,6 +113,7 @@ class Character {
   }
 
   handleEating(object, type = BOOK) {
+    console.log("TYPE", type, object.x, object.y)
     let d = dist(this.x, this.y, object.x, object.y);
     let dx = object.x - this.x;
     let dy = object.y - this.y;

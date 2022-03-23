@@ -1,6 +1,10 @@
 class Book extends Tree {
   constructor(x, y, radius, texture) {
-    super(x, y, radius, texture);
+    this.x = x;
+    this.y = y;
+    this.texture = texture;
+    this.radius = radius;
+
     this.maxHealth = 100;
     this.health = this.maxHealth;
   }

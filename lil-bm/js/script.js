@@ -319,7 +319,6 @@ function draw() {
       }
 
       if (!player1.dead) {
-        console.log(books[i])
         player1.handleEating(books[i], BOOK);
       }
       if (!singlePlayer) {
