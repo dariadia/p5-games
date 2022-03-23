@@ -246,6 +246,7 @@ function drawBG() {
 
 
 function nextSeason() {
+  music[currentSeason].stop();
   currentSeason += 1;
   if (currentSeason > 2) currentSeason = 0;
   setupBG(); 
