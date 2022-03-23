@@ -171,7 +171,7 @@ function setUpHearts() {
           texture = bookType4;
           texture_flipped = bookType4;
         }
-      } else if (heart_id === 2) {
+      } else if (heart_id === 3) {
         heartSpeed = 0;
         heartRadius = 0;
 
@@ -185,7 +185,7 @@ function setUpHearts() {
           texture = bookType7;
           texture_flipped = bookType7;
         }
-      } else if (heart_id === 2) {
+      } else if (heart_id === 4) {
         heartSpeed = 0;
         heartRadius = 0;
 
