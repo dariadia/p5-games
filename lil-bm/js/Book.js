@@ -22,7 +22,7 @@ class Book extends Tree {
     noStroke();
     imageMode(CENTER);
 
-    image(this.texture, this.x, this.y, this.radius * 2, this.radius * 2);
+    image(this.texture, this.x, this.y, this.radius, this.radius);
 
     pop();
   }
