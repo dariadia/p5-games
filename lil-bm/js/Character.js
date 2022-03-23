@@ -112,8 +112,7 @@ class Character {
     else if (this.y > height) this.y -= height;
   }
 
-  handleEating(object, type = BOOK) {
-    console.log("TYPE", type, object.x, object.y)
+  handleEating(object) {
     let d = dist(this.x, this.y, object.x, object.y);
     let dx = object.x - this.x;
     let dy = object.y - this.y;
@@ -124,20 +123,15 @@ class Character {
       object.y += object.speed / 3.5 * Math.sin(angle);
 
       if (d < this.radius + object.radius) {
-        this.health += 
-          type === BOOK 
-            ? this.healthGainPerEat 
-            : this.healthGainPerEat * 2;
+        this.health += this.healthGainPerEat;
         this.health = constrain(this.health, 0, this.maxHealth);
-        object.health = 0
+        object.health = 0;
 
-        console.log(1, type, object,  this.score)
         object.reset();
-        console.log(2, type, object,  this.score)
         this.score += 1; 
         if (this.score % 10 === 0 && this.score >= 10) {
           this.healthLossPerMove -= 0.005;
-          this.healthLossPerMove = constrain(this.healthLossPerMove, 0.1, 0.15)
+          this.healthLossPerMove = constrain(this.healthLossPerMove, 0.1, 0.15);
         }
       }
     }

@@ -1,6 +1,3 @@
-const HEART = 'heart'
-const BOOK = 'book'
-
 let player1;
 let player2;
 let player1_texture;
@@ -9,11 +6,13 @@ let player2_texture;
 let singlePlayer = true;
 
 const NUM_TREES = 7;
-const NUM_BOOKS = 66;
 
 const NUM_TYPE_ONE = 15;
 const NUM_TYPE_TWO = 20;
-const NUM_HEARTS = [NUM_TYPE_ONE, NUM_TYPE_TWO];
+const NUM_TYPE_BOOK_ONE = 21;
+const NUM_TYPE_BOOK_TWO = 23;
+const NUM_TYPE_BOOK_THREE = 29;
+const NUM_HEARTS = [NUM_TYPE_ONE, NUM_TYPE_TWO, NUM_TYPE_BOOK_ONE, NUM_TYPE_BOOK_TWO, NUM_TYPE_BOOK_THREE];
 
 let playing = false;
 let gameOver = false;
@@ -33,9 +32,6 @@ let currentSeason;
 
 let TreesPosX = [];
 let TreesPosY = [];
-
-let BooksPosX = [];
-let BooksPosY = [];
 
 let campfirePosX = 0;
 let campfirePosY = 0;
@@ -57,7 +53,6 @@ let bookType7;
 let bookType8;
 
 let trees = [];
-let books = [];
 let hearts = [];
 let players = [];
 
@@ -115,7 +110,6 @@ function setup() {
 
   currentSeason = int(random(0, 3)); 
   randomizeTreesPos(); 
-  randomizeBooksPos(); 
 
   setupBG();
 
@@ -128,7 +122,6 @@ function setup() {
   player1 = new Character(100, 100, 2, 30, player1_texture, player1_texture_flipped, 87, 83, 65, 68, 70);
 
   setUpHearts();
-  console.log("books", books)
 }
 
 function setUpHearts() {
@@ -164,6 +157,45 @@ function setUpHearts() {
         heartRadius = random(20, 25);
         texture = heartType1;
         texture_flipped = heartType1;
+      } else if (heart_id === 2) {
+        heartSpeed = 0;
+        heartRadius = 0;
+
+        if (currentSeason === 0) {
+          texture = bookType1;
+          texture_flipped = bookType1;
+        } else if (currentSeason === 1) {
+          texture = bookType2;
+          texture_flipped = bookType2;
+        } else {
+          texture = bookType4;
+          texture_flipped = bookType4;
+        }
+      } else if (heart_id === 2) {
+        heartSpeed = 0;
+        heartRadius = 0;
+
+        if (currentSeason === 0) {
+          texture = bookType3;
+          texture_flipped = bookType3;
+        } else if (currentSeason === 1) {
+          texture = bookType5;
+          texture_flipped = bookType5;
+        } else {
+          texture = bookType7;
+          texture_flipped = bookType7;
+        }
+      } else if (heart_id === 2) {
+        heartSpeed = 0;
+        heartRadius = 0;
+
+        if (currentSeason === 0 || currentSeason === 1) {
+          texture = bookType6;
+          texture_flipped = bookType6;
+        } else {
+          texture = bookType8;
+          texture_flipped = bookType8;
+        }
       }
       let heartObj = new Heart(heartX, heartY, heartSpeed, heartRadius, texture, texture_flipped);
       hearts.push(heartObj);
@@ -181,43 +213,16 @@ function setupPlayer() {
 
 function setupBG() {
   trees = [];
-  books = [];
 
-  if (currentSeason === 0) {
+  if (currentSeason === 0 || currentSeason === 1) {
     for (let i = 0; i < NUM_TREES; i++) {
       let treeObj = new Tree(TreesPosX[i], TreesPosY[i], 60, sunflower);
       trees.push(treeObj);
     }
-  
-    for (let j = 0; j < Math.floor(NUM_BOOKS / 3); j++) {
-      let bookObj1 = new Book(BooksPosX[j], BooksPosY[j], 30, bookType1);
-      let bookObj2 = new Book(BooksPosX[j + NUM_BOOKS / 3], BooksPosY[j + NUM_BOOKS / 3], 30, bookType3);
-      let bookObj3 = new Book(BooksPosX[j + (NUM_BOOKS / 3) * 2], BooksPosY[j + (NUM_BOOKS / 3) * 2], 30, bookType6);
-      books = books.concat(bookObj1, bookObj2, bookObj3);
-    }
-
-  } else if (currentSeason === 1) {
-    for (let i = 0; i < NUM_TREES; i++) {
-      let treeObj = new Tree(TreesPosX[i], TreesPosY[i], 60, sunflower);
-      trees.push(treeObj);
-    }
-    for (let j = 0; j < Math.floor(NUM_BOOKS / 3); j++) {
-      let bookObj1 = new Book(BooksPosX[j], BooksPosY[j], 30, bookType2);
-      let bookObj2 = new Book(BooksPosX[j + NUM_BOOKS / 3], BooksPosY[j + NUM_BOOKS / 3], 30, bookType5);
-      let bookObj3 = new Book(BooksPosX[j + (NUM_BOOKS / 3) * 2], BooksPosY[j + (NUM_BOOKS / 3) * 2], 30, bookType6);
-      books = books.concat(bookObj1, bookObj2, bookObj3);
-    }
-
   } else if (currentSeason === 2) {
     for (let i = 0; i < NUM_TREES; i++) {
       let treeObj = new Tree(TreesPosX[i], TreesPosY[i], 60, tree);
       trees.push(treeObj);
-    }
-    for (let j = 0; j < Math.floor(NUM_BOOKS / 3); j++) {
-      let bookObj1 = new Book(BooksPosX[j], BooksPosY[j], 30, bookType4);
-      let bookObj2 = new Book(BooksPosX[j + NUM_BOOKS / 3], BooksPosY[j + NUM_BOOKS / 3], 30, bookType7);
-      let bookObj3 = new Book(BooksPosX[j + (NUM_BOOKS / 3) * 2], BooksPosY[j + (NUM_BOOKS / 3) * 2], 30, bookType8);
-      books = books.concat(bookObj1, bookObj2, bookObj3);
     }
   }
 }
@@ -233,10 +238,6 @@ function setGradient(x, y, w, h, c1, c2) {
 
 function drawBG() {
   setGradient(0, 0, width, height, ...SEASONS[currentSeason]);
-
-  for (let j = 0; j < books.length; j++) {
-    books[j].display();
-  }
 
   for (let i = 0; i < trees.length; i++) {
     trees[i].display();
@@ -254,13 +255,6 @@ function randomizeTreesPos() {
   for (let i = 0; i < NUM_TREES; i++) {
     TreesPosX[i] = random(0, width);
     TreesPosY[i] = random(0, height);
-  }
-}
-
-function randomizeBooksPos() {
-  for (let i = 0; i < NUM_BOOKS; i++) {
-    BooksPosX[i] = random(0, width);
-    BooksPosY[i] = random(0, height);
   }
 }
 
@@ -302,28 +296,11 @@ function draw() {
       }
 
       if (!player1.dead) {
-        player1.handleEating(hearts[i], HEART);
+        player1.handleEating(hearts[i]);
       }
       if (!singlePlayer) {
         if (!player2.dead) {
-          player2.handleEating(hearts[i], HEART);
-        }
-      }
-    }
-
-    for (let i = 0; i < books.length; i++) {
-      books[i].display();
-
-      for (let j = 0; j < NUM_TREES; j++) {
-        books[i].collide(trees[j]);
-      }
-
-      if (!player1.dead) {
-        player1.handleEating(books[i], BOOK);
-      }
-      if (!singlePlayer) {
-        if (!player2.dead) {
-          player2.handleEating(books[i], BOOK);
+          player2.handleEating(hearts[i]);
         }
       }
     }
