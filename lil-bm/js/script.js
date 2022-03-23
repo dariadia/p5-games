@@ -206,8 +206,8 @@ function setUpHearts() {
 function setupPlayer() {
   player1_texture = players[0];
   player1_texture_flipped = players[1];
-  player2_texture = players[2];
-  player2_texture_flipped = players[3];
+  player2_texture = players[3];
+  player2_texture_flipped = players[2];
 }
 
 
