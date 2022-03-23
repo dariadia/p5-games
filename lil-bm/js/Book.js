@@ -16,17 +16,6 @@ class Book extends Tree {
     }
   }
 
-  display() {
-    push();
-    rectMode(CORNER);
-    noStroke();
-    imageMode(CENTER);
-
-    image(this.texture, this.x, this.y, this.radius, this.radius);
-
-    pop();
-  }
-
   reset() {
     this.x = random(0, width);
     this.y = random(0, height);
