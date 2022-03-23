@@ -269,7 +269,7 @@ function draw() {
   if (!playing && !gameOver) {
     for (let i = 0; i < hearts.length; i++) {
       hearts[i].move();
-      hearts[i].display(playing);
+      hearts[i].display();
 
       for (let j = 0; j < NUM_TREES; j++) {
         hearts[i].collide(trees[j]);
@@ -295,7 +295,7 @@ function draw() {
 
     for (let i = 0; i < hearts.length; i++) {
       hearts[i].move();
-      hearts[i].display(playing);
+      hearts[i].display();
 
       for (let j = 0; j < NUM_TREES; j++) {
         hearts[i].collide(trees[j]);
@@ -312,7 +312,7 @@ function draw() {
     }
 
     for (let i = 0; i < books.length; i++) {
-      books[i].display(playing);
+      books[i].display();
 
       for (let j = 0; j < NUM_TREES; j++) {
         books[i].collide(trees[j]);

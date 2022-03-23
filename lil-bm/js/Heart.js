@@ -70,7 +70,7 @@ class Heart {
     }
   }
 
-  display(inGame) {
+  display() {
     push();
     rectMode(CORNER);
     noStroke();

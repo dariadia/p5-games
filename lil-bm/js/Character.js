@@ -130,7 +130,9 @@ class Character {
         this.health = constrain(this.health, 0, this.maxHealth);
         object.health = 0
 
+        console.log(1, type, object,  this.score)
         object.reset();
+        console.log(2, type, object,  this.score)
         this.score += 1; 
         if (this.score % 10 === 0 && this.score >= 10) {
           this.healthLossPerMove -= 0.005;
