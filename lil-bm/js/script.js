@@ -200,7 +200,6 @@ function setUpHearts() {
       let heartObj = new Heart(heartX, heartY, heartSpeed, heartRadius, texture, texture_flipped);
       hearts.push(heartObj);
     }
-    console.log(hearts)
   }
 }
 
