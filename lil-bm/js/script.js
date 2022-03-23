@@ -159,7 +159,7 @@ function setUpHearts() {
         texture_flipped = heartType1;
       } else if (heart_id === 2) {
         heartSpeed = 0;
-        heartRadius = random(5, 10);
+        heartRadius = random(7, 13);
 
         if (currentSeason === 0) {
           texture = bookType1;
@@ -173,7 +173,7 @@ function setUpHearts() {
         }
       } else if (heart_id === 3) {
         heartSpeed = 0;
-        heartRadius = random(5, 10);
+        heartRadius = random(7, 13);
 
         if (currentSeason === 0) {
           texture = bookType3;
@@ -187,7 +187,7 @@ function setUpHearts() {
         }
       } else if (heart_id === 4) {
         heartSpeed = 0.1;
-        heartRadius = random(5, 10);
+        heartRadius = random(7, 13);
 
         if (currentSeason === 0 || currentSeason === 1) {
           texture = bookType6;
