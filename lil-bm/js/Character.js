@@ -17,7 +17,7 @@ class Character {
     // Health
     this.maxHealth = this.radius;
     this.health = this.maxHealth;
-    this.healthLossPerMove = 0.25;
+    this.healthLossPerMove = 0.13;
     this.originalHealthPerEat = 1.3;
     this.healthGainPerEat = this.originalHealthPerEat;
     // skins
