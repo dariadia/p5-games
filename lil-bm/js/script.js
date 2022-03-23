@@ -356,7 +356,7 @@ function displayScore(player1, player2) {
     text(totalScore, width / 2, 50);
   } else {
     totalScore = int(player1.score + player2.score);
-    text(`player 1: ${player1.score} || player 2: ${player2.score}`, width / 2, 50);
+    text(`${player1.score} || ${player2.score}`, width / 2, 50);
   }
 
   if (prevScore < totalScore) {
