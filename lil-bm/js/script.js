@@ -5,7 +5,7 @@ let player2_texture;
 
 let singlePlayer = true;
 
-const NUM_TREES = 7;
+const NUM_TREES = 13;
 
 const NUM_TYPE_ONE = 15;
 const NUM_TYPE_TWO = 20;
@@ -356,7 +356,7 @@ function displayScore(player1, player2) {
     text(totalScore, width / 2, 50);
   } else {
     totalScore = int(player1.score + player2.score);
-    text(totalScore, width / 2, 50);
+    text(`player 1: ${player1.score} || player 2: ${player2.score}`, width / 2, 50);
   }
 
   if (prevScore < totalScore) {
@@ -448,7 +448,7 @@ function checkMainMenuButtons() {
     if (mouseIsPressed) {
       playing = true;
       singlePlayer = false;
-      player2 = new Character(width - 100, 100, 2, 30, player2_texture, player2_texture_flipped, UP_ARROW, DOWN_ARROW, LEFT_ARROW, RIGHT_ARROW, 76);
+      player2 = new Character(width - 100, 100, 2, 30, player2_texture_flipped, player2_texture, UP_ARROW, DOWN_ARROW, LEFT_ARROW, RIGHT_ARROW, 76);
     }
   }
   pop();
