@@ -118,6 +118,7 @@ function setup() {
   randomizeBooksPos(); 
 
   setupBG();
+  console.log("books", books)
 
   append(players, bmLeft);
   append(players, bmRight);
@@ -218,7 +219,6 @@ function setupBG() {
       let bookObj3 = new Book(BooksPosX[j + (NUM_BOOKS / 3) * 2], BooksPosY[j + (NUM_BOOKS / 3) * 2], 30, bookType8);
       books = books.concat(bookObj1, bookObj2, bookObj3);
     }
-console.log("books", books)
   }
 }
 
