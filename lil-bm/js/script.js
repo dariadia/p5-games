@@ -480,7 +480,7 @@ function displayGameOver() {
     fill(SELECTED);
     text("YOU CAN DO BETTER!", width / 2, height / 2 - 150);
     textSize(64);
-    text(totalScore, width / 2, 50);
+    text(totalScore, width / 2, height / 2 - 220);
     textSize(32);
     fill(255);
     text("YOUR BEST SCORE: " + bestScore, width / 2, height / 2 - 90);
