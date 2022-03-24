@@ -472,7 +472,7 @@ function displayGameOver() {
     fill(SELECTED);
     text("YOU GOT A NEW RECORD!", width / 2, height / 2 - 150);
     textSize(64);
-    text(totalScore, width / 2, height / 2 - 250);
+    text(totalScore, width / 2, height / 2 - 220);
     textSize(32);
     fill(255);
     text("YOUR PREV BEST SCORE: " + bestScore, width / 2, height / 2 - 90);
@@ -495,7 +495,7 @@ function displayGameOver() {
   image(player1_texture, 100, 100, player1.radius * 2, player1.radius * 2);
   fill(255);
   textSize(32);
-  text(STARTOVER, width / 2, height / 2 - 25); // game over msg
+  text(STARTOVER, width / 2, height / 2); // game over msg
   textSize(32);
   textAlign(RIGHT, CENTER);
   text("play as one", width / 2 - 100, height / 2 + 100);
