@@ -470,20 +470,20 @@ function displayGameOver() {
 
   if (bestScore < totalScore) {
     fill(SELECTED);
-    text("YOU GOT A NEW RECORD!", width / 2, height / 2 - 200);
+    text("YOU GOT A NEW RECORD!", width / 2, height / 2 - 50);
     textSize(64);
-    text(totalScore, width / 2, 50);
+    text(totalScore, width / 2, height / 2 - 200);
     textSize(32);
     fill(255);
-    text("YOUR PREV BEST SCORE: " + bestScore, width / 2, height / 2 - 150);
+    text("YOUR PREV BEST SCORE: " + bestScore, width / 2, height / 2 + 150);
   } else {
     fill(SELECTED);
-    text("YOU CAN DO BETTER!", width / 2, height / 2 - 200);
+    text("YOU CAN DO BETTER!", width / 2, height / 2 + 150);
     textSize(64);
     text(totalScore, width / 2, 50);
     textSize(32);
     fill(255);
-    text("YOUR BEST SCORE: " + bestScore, width / 2, height / 2 - 150);
+    text("YOUR BEST SCORE: " + bestScore, width / 2, height / 2 + 150);
   }
 
   fill(255, 100);
