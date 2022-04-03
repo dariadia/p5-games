@@ -8,7 +8,7 @@ function setup() {
   rg.loadFrom('/haiku/assets/grammar-en.json')
 
   button = createButton('generate')
-  button.position('50%', '50%')
+  button.class('grid')
   button.mousePressed(newHaiku)
 }
 
