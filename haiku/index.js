@@ -5,13 +5,10 @@ function setup() {
   noCanvas()
 
   rg = new RiGrammar()
-  rg.loadFrom('/haiku/assets/grammar-en.json', grammarReady)
-
-  function grammarReady() {
-    console.log('ready')
-  }
+  rg.loadFrom('/haiku/assets/grammar-en.json')
 
   button = createButton('generate')
+  button.position('50%', '50%')
   button.mousePressed(newHaiku)
 }
 
