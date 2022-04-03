@@ -1,5 +1,6 @@
 let rg
 let button
+let paragraph
 
 function setup() {
   noCanvas()
@@ -14,5 +15,6 @@ function setup() {
 
 function newHaiku() {
   const result = rg.expand()
-  createP(result)
+  paragraph = createP(result)
+  paragraph.class('mx-auto block text-center text-white bg-teal-700 px-6 py-4 max-w-sm rounded overflow-hidden shadow-lg')
 }
