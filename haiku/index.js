@@ -5,7 +5,7 @@ function setup() {
   noCanvas()
 
   rg = new RiGrammar()
-  rg.loadFrom('grammar.json', grammarReady)
+  rg.loadFrom('/haiku/assets/grammar-en.json', grammarReady)
 
   function grammarReady() {
     console.log('ready')
