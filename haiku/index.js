@@ -16,5 +16,5 @@ function setup() {
 function newHaiku() {
   const result = rg.expand()
   paragraph = createP(result)
-  paragraph.class('mx-auto block text-center text-white bg-teal-700 px-6 py-4 max-w-sm rounded overflow-hidden shadow-lg')
+  paragraph.class('my-4 mx-auto block text-center text-white bg-teal-700 px-6 py-4 max-w-sm rounded overflow-hidden shadow-lg')
 }
