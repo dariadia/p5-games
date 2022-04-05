@@ -30,7 +30,10 @@
     "red",
     "white",
     "black",
+    "old",
+    "silent",
     "sky",
+    "frog",
     "dawns",
     "breaks",
     "falls",
@@ -64,7 +67,9 @@
     "mind",
     "smoke",
     "cranes",
-    "fish"
+    "fish",
+    "pond",
+    "rain"
   ],
   "<2>":[
     "drifting",
@@ -101,15 +106,18 @@
     "kimonos",
     "evenings",
     "peasant rain",
-    "sad snow fall"
+    "sad snow fall",
+    "wasting clay"
   ],
   "<4>":[
     "aluminum",
-    "yakitori",
+    "dewdrop",
     "the east village",
     "west of the sun",
     "chrysanthemums",
-    "cherry blossoms"
+    "cherry blossoms",
+    "loving you",
+    "all summer"
   ],
   "<5>":[
     "resolutional",
@@ -117,6 +125,13 @@
     "rolling foothills rise",
     "toward mountains higher",
     "out over this country",
-    "in the springtime again"
+    "in the springtime again",
+    "a world of struggle",
+    "a world of dew",
+    "silence again",
+    "with no leaves to blow",
+    "petals on a wet, black bough",
+    "a long river running",
+    "this chance. Be of use"
   ]
 }
