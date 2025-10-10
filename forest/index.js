@@ -99,7 +99,7 @@ function drawTree(x, y){
 }
 
 function keyPressed() {
-	console.log("keY", key)
+	console.log("you pressed key:", key)
   const pressed = key.toLowerCase();
 
   if (keyCode === ENTER) {
@@ -108,7 +108,7 @@ function keyPressed() {
     return;
   }
 
-  if (pressed === 'b') {
+  if (pressed === 'Backspace') {
     background(backgroundColour);
     return;
   }
