@@ -102,7 +102,6 @@ function drawTree(x, y){
 
 function keyPressed() {
   const pressed = key.toLowerCase();
-	console.log(key)
 
   if (keyCode === ENTER) {
     fill(random(140, 170), 100, random(50, 80));
@@ -116,8 +115,8 @@ function keyPressed() {
   }
 	
   const soundMap = {
-    a: rainbow,
-    s: pooratNaLes,
+    a: zvuki_revolyucii_kriki_tolpy,
+    s: zvuki_kriki,
     d: dragons,
     f: crowander,
     g: monster,
@@ -142,8 +141,8 @@ function keyPressed() {
     b: zvuki_ada_kriki_novorozhdennogo,
     n: zvuki_dlya_dostavaniya_sosedey_nechelovecheskie_kriki,
     m: zvuki_dlya_montazha_kriki_achivochka,
-    '1': zvuki_kriki,
-    '2': zvuki_revolyucii_kriki_tolpy
+    '1': pooratNaLes,
+    '2': rainbow,
   };
 
   const sound = soundMap[pressed];
