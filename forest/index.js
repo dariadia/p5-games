@@ -9,24 +9,24 @@ let male;
 let donkey;
 let e1e49291a7844340;
 let e40b09bf27c4080f;
-let  e30059a05b3d8075;
-let  e966380ea11fdeec;
-let  eb04efbbb80a386d;
-let  ebd74abc209d2a9d;
-let  eho_zvuk_au_auuu_echo_fx_echo_sound; 
-let  gemshn_krik_devushki;
-let  krik_uzasa_boli_i_otcayaniya;
-let  kriki_i_mucheniya_lyudey_6;
-let  l9dr_krik_devushki;
-let  muzhskoj_krik;
-let  neizvestnyy_ispolnitel_a;
-let  zvuk_krik_devushki;
-let  zvuk_muzhskoj_krik;
-let  zvuki_ada_kriki_novorozhdennogo;
+let e30059a05b3d8075;
+let e966380ea11fdeec;
+let eb04efbbb80a386d;
+let ebd74abc209d2a9d;
+let eho_zvuk_au_auuu_echo_fx_echo_sound; 
+let gemshn_krik_devushki;
+let krik_uzasa_boli_i_otcayaniya;
+let kriki_i_mucheniya_lyudey_6;
+let l9dr_krik_devushki;
+let muzhskoj_krik;
+let neizvestnyy_ispolnitel_a;
+let zvuk_krik_devushki;
+let zvuk_muzhskoj_krik;
+let zvuki_ada_kriki_novorozhdennogo;
 let zvuki_dlya_dostavaniya_sosedey_nechelovecheskie_kriki;
 let zvuki_dlya_montazha_kriki_achivochka;
-let  zvuki_kriki;
-let  zvuki_revolyucii_kriki_tolpy;
+let zvuki_kriki;
+let zvuki_revolyucii_kriki_tolpy;
 
 
 function preload() {
@@ -102,6 +102,7 @@ function drawTree(x, y){
 
 function keyPressed() {
   const pressed = key.toLowerCase();
+	console.log(key)
 
   if (keyCode === ENTER) {
     fill(random(140, 170), 100, random(50, 80));
@@ -141,8 +142,8 @@ function keyPressed() {
     b: zvuki_ada_kriki_novorozhdennogo,
     n: zvuki_dlya_dostavaniya_sosedey_nechelovecheskie_kriki,
     m: zvuki_dlya_montazha_kriki_achivochka,
-    q: zvuki_kriki,
-    r: zvuki_revolyucii_kriki_tolpy
+    '1': zvuki_kriki,
+    '2': zvuki_revolyucii_kriki_tolpy
   };
 
   const sound = soundMap[pressed];
