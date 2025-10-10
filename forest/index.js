@@ -30,8 +30,8 @@ function preload() {
   l9dr_krik_devushki = loadSound('/forest/assets/l9dr-krik-devushki.mp3');
   muzhskoj_krik = loadSound('/forest/assets/muzhskoj_krik.mp3');
   neizvestnyy_ispolnitel_a = loadSound('/forest/assets/neizvestnyy-ispolnitel-a.mp3');
-  zvuk_krik_devushki = loadSound('/forest/assets/zvuk_-krik_devushki.mp3');
-  zvuk_muzhskoj_krik = loadSound('/forest/assets/zvuk-_muzhskoj_krik.mp3');
+  zvuk_krik_devushki = loadSound('/forest/assets/zvuk_-_krik_devushki.mp3');
+  zvuk_muzhskoj_krik = loadSound('/forest/assets/zvuk_-_muzhskoj_krik.mp3');
   zvuki_ada_kriki_novorozhdennogo = loadSound('/forest/assets/zvuki-ada-kriki-novorozhdennogo.mp3');
   zvuki_dlya_dostavaniya_sosedey_nechelovecheskie_kriki = loadSound('/forest/assets/zvuki-dlya-dostavaniya-sosedey-nechelovecheskie-kriki.mp3');
   zvuki_dlya_montazha_kriki_achivochka = loadSound('/forest/assets/zvuki-dlya-montazha-kriki-achivochka.mp3');
