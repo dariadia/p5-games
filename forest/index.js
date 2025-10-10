@@ -22,7 +22,6 @@ let muzhskoj_krik;
 let neizvestnyy_ispolnitel_a;
 let zvuk_krik_devushki;
 let zvuk_muzhskoj_krik;
-let zvuki_ada_kriki_novorozhdennogo;
 let zvuki_dlya_dostavaniya_sosedey_nechelovecheskie_kriki;
 let zvuki_dlya_montazha_kriki_achivochka;
 let zvuki_kriki;
@@ -53,7 +52,6 @@ function preload() {
   neizvestnyy_ispolnitel_a = loadSound('/forest/assets/neizvestnyy-ispolnitel-a.mp3');
   zvuk_krik_devushki = loadSound('/forest/assets/zvuk_-_krik_devushki.mp3');
   zvuk_muzhskoj_krik = loadSound('/forest/assets/zvuk_-_muzhskoj_krik.mp3');
-  zvuki_ada_kriki_novorozhdennogo = loadSound('/forest/assets/zvuki-ada-kriki-novorozhdennogo.mp3');
   zvuki_dlya_dostavaniya_sosedey_nechelovecheskie_kriki = loadSound('/forest/assets/zvuki-dlya-dostavaniya-sosedey-nechelovecheskie-kriki.mp3');
   zvuki_dlya_montazha_kriki_achivochka = loadSound('/forest/assets/zvuki-dlya-montazha-kriki-achivochka.mp3');
   zvuki_kriki = loadSound('/forest/assets/zvuki-kriki.mp3');
@@ -138,7 +136,6 @@ function keyPressed() {
     x: neizvestnyy_ispolnitel_a,
     c: zvuk_krik_devushki,
     v: zvuk_muzhskoj_krik,
-    b: zvuki_ada_kriki_novorozhdennogo,
     n: zvuki_dlya_dostavaniya_sosedey_nechelovecheskie_kriki,
     m: zvuki_dlya_montazha_kriki_achivochka,
     '1': pooratNaLes,
